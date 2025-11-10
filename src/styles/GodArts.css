@@ -1,0 +1,184 @@
+/* 📦 Gallery Layout */
+.god-arts-gallery {
+  padding: 4rem 2rem;
+  background: linear-gradient(to right, #ffffff, #ffefcd, #fffdc2);
+}
+
+.gallery-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: 'Comic Neue', cursive;
+  margin-bottom: 2rem;
+  color: #444;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.godart-card {
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid rgb(255, 238, 144);
+  background: #fff;
+}
+
+.godart-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.godart-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* 🖼️ Modal Preview Card Layout */
+.godarts-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: rgba(0,0,0,0.85);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.godarts-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  background-color: #fffdf5;
+  border: 4px solid gold; /* 🟡 Golden border */
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  max-width: 1100px;
+  width: 100%;
+  max-height: 90vh;
+  padding: 2rem;
+  position: relative;
+}
+
+.godarts-card:hover {
+  transform: none;
+}
+
+.godarts-image img {
+  width: 360px;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.godarts-info {
+  font-family: 'Comic Neue', cursive;
+  color: #222;
+  overflow-y: auto;
+  max-height: 80vh;
+  padding-right: 1rem;
+  flex: 1;
+}
+
+.godarts-info h3 {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+  color: #b8860b;
+}
+
+.godarts-info p {
+  font-size: 1.05rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* ❌ Close Button */
+.godarts-close-btn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.godarts-close-btn:hover {
+  transform: scale(1.2);
+}
+
+
+/* 🔄 Responsive */
+@media (max-width: 992px) {
+  .godarts-card {
+    gap: 1.5rem;
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+
+  .godarts-image img {
+    width: 280px;
+  }
+
+  .godarts-info h3 {
+    font-size: 1.6rem;
+  }
+
+  .godarts-info p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .godarts-card {
+    flex-direction: column;
+    text-align: center;
+    max-height: 85vh;
+    padding: 1.2rem;
+  }
+
+  .godarts-image img {
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .godarts-info {
+    padding: 1rem;
+    max-height: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-title {
+    font-size: 1.8rem;
+  }
+
+  .godarts-info h3 {
+    font-size: 1.4rem;
+  }
+
+  .godarts-info p {
+    font-size: 0.9rem;
+  }
+}

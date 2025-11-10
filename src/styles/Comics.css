@@ -1,0 +1,94 @@
+/* Comics.css */
+
+.comic-gallery {
+  padding: 3rem 2rem;
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e); /* galaxy-style background */
+  min-height: 100vh;
+  color: #f1f1f1;
+  font-family: 'Poppins', sans-serif;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  text-shadow: 1px 1px 5px #000000;
+}
+
+.comic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.comic-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.comic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+.comic-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.comic-card p {
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+/* -------------------- Responsive Fixes -------------------- */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  .comic-grid {
+    gap: 1.5rem;
+  }
+  .comic-card p {
+    font-size: 1rem;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 600px) {
+  .comic-gallery {
+    padding: 2rem 1rem;
+  }
+  .page-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .comic-grid {
+    gap: 1rem;
+  }
+  .comic-card {
+    border-radius: 12px;
+  }
+  .comic-card p {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
+  /* Remove hover effect for touch devices */
+  .comic-card:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  }
+}

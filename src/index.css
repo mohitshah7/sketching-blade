@@ -1,0 +1,18 @@
+@import url('./styles/Home.css');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #ffffff;
+  font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
+  color: #222;
+}
+
+.app-container {
+  padding: 2rem;
+  text-align: center;
+}

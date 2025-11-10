@@ -1,0 +1,109 @@
+[
+  {
+    "id": "paradox",
+    "title": "paradox",
+    "folder": "paradox",
+    "cover": "/assets/comics/paradox/paradox-1.jpg",
+    "pages": [
+      "/assets/comics/paradox/paradox-2.jpg",
+      "/assets/comics/paradox/paradox-3.jpg",
+      "/assets/comics/paradox/paradox-4.jpg",
+      "/assets/comics/paradox/paradox-5.jpg",
+      "/assets/comics/paradox/paradox-6.jpg"
+    ],
+    "audio": ""
+  },
+  {
+    "id": "2am",
+    "title": "2:00 AM",
+    "folder": "am",
+    "cover": "/assets/comics/am/am1.jpg",
+    "pages": [
+      "/assets/comics/am/am2.jpg",
+      "/assets/comics/am/am3.jpg",
+      "/assets/comics/am/am4.jpg",
+      "/assets/comics/am/am5.jpg",
+      "/assets/comics/am/am6.jpg",
+      "/assets/comics/am/am7.jpg"
+    ],
+    "audio": "/assets/audio/scary-horror-music-351315.mp3"
+  },
+  {
+    "id": "where-am-i",
+    "title": "Where am I?",
+    "folder": "door",
+    "cover": "/assets/comics/door/door-1.jpg",
+    "pages": [
+      "/assets/comics/door/door-1.jpg",
+      "/assets/comics/door/door-2.jpg",
+      "/assets/comics/door/door-3.jpg",
+      "/assets/comics/door/door-4.jpg",
+      "/assets/comics/door/door-5.jpg"
+    ],
+    "audio": "/assets/audio/funny-comedy-quirky-background-music-316889.mp3"
+  },
+  {
+    "id": "drowning",
+    "title": "Drowning",
+    "folder": "drowning",
+    "cover": "/assets/comics/drowning/drowning1.jpg",
+    "pages": [
+      "/assets/comics/drowning/drowning2.jpg",
+      "/assets/comics/drowning/drowning3.jpg",
+      "/assets/comics/drowning/drowning4.jpg",
+      "/assets/comics/drowning/drowning5.jpg",
+      "/assets/comics/drowning/drowning6.jpg",
+      "/assets/comics/drowning/drowning7.jpg"
+    ],
+    "audio": "/assets/audio/underwater-loop-amb-6182.mp3"
+  },
+  {
+    "id": "duality",
+    "title": "Duality",
+    "folder": "duality",
+    "cover": "/assets/comics/duality/duality-1.jpg",
+    "pages": [
+      "/assets/comics/duality/duality-2.jpg",
+      "/assets/comics/duality/duality-3.jpg",
+      "/assets/comics/duality/duality-4.jpg",
+      "/assets/comics/duality/duality-5.jpg",
+      "/assets/comics/duality/duality-6.jpg",
+      "/assets/comics/duality/duality-7.jpg",
+      "/assets/comics/duality/duality-8.jpg"
+    ],
+    "audio": "/assets/audio/just-relax-11157.mp3"
+  },
+  {
+    "id": "rain",
+    "title": "Rain",
+    "folder": "rain",
+    "cover": "/assets/comics/rain/rain1.jpg",
+    "pages": [
+      "/assets/comics/rain/rain2.png",
+      "/assets/comics/rain/rain3.png",
+      "/assets/comics/rain/rain4.png",
+      "/assets/comics/rain/rain5.png",
+      "/assets/comics/rain/rain6.jpg"
+    ],
+    "audio": "/assets/audio/lluvia-rain-110426.mp3"
+  },
+  {
+    "id": "window-stories",
+    "title": "Window Stories",
+    "folder": "window",
+    "cover": "/assets/comics/window/window1.jpg",
+    "pages": [
+      "/assets/comics/window/window2.jpg",
+      "/assets/comics/window/window3.jpg",
+      "/assets/comics/window/window4.jpg",
+      "/assets/comics/window/window5.jpg",
+      "/assets/comics/window/window6.jpg",
+      "/assets/comics/window/window7.jpg",
+      "/assets/comics/window/window8.jpg",
+      "/assets/comics/window/window9.jpg",
+      "/assets/comics/window/window10.jpg",
+      "/assets/comics/window/window11.jpg"
+    ],
+    "audio": "/assets/audio/moonlight-relaxing-piano-music-285580.mp3"
+  }
+]

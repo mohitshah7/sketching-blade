@@ -1,0 +1,98 @@
+.contact-footer {
+  background-color: #ffefd6;
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.footer-title {
+  font-family: 'Comic Neue', cursive;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.footer-text {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-button {
+  display: inline-block;
+  background-color: #ff944d;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.7rem 1.6rem;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px #cc5c00;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.footer-button:hover {
+  background-color: #ffa366;
+  transform: translateY(-2px);
+}
+
+.social-links {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+  gap: 1.5rem;
+}
+
+.social-links a {
+  text-decoration: none;
+  color: #444;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.social-links a:hover {
+  color: #ff944d;
+}
+
+/* 📱 Mobile Devices */
+@media (max-width: 600px) {
+  .footer-title {
+    font-size: 1.5rem;
+  }
+
+  .footer-text {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+
+  .footer-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .social-links {
+    gap: 1rem;
+  }
+
+  .social-links a {
+    font-size: 1rem;
+  }
+}
+
+/* 📱 Tablets */
+@media (max-width: 900px) {
+  .footer-title {
+    font-size: 1.7rem;
+  }
+
+  .footer-text {
+    font-size: 0.95rem;
+  }
+
+  .social-links {
+    gap: 1.2rem;
+  }
+}

@@ -1,0 +1,135 @@
+.hero-image {
+  width: 100%;
+  max-width: 1920px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  background-color: #fff;
+  margin-top: 2rem;
+}
+
+.hero-banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+/* === Section Layout === */
+.section-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 5rem;
+  padding: 0 1rem;
+}
+
+.section-card {
+  flex: 1 1 45%;
+  max-width: 630px;
+  height: 416px;
+  border-radius: 24px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border: 4px solid #ff944d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.section-card:hover {
+  transform: scale(1.03) rotate(-0.5deg);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  border-color: #ff6f3c;
+}
+
+/* === Text Info === */
+.section-info {
+  flex: 1 1 45%;
+  max-width: 500px;
+  text-align: left;
+  padding: 1rem;
+}
+
+.section-info h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Comic Neue', cursive;
+}
+
+.section-info p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* === Button === */
+.section-button {
+  display: inline-block;
+  background-color: #ff944d;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.7rem 1.6rem;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px #cc5c00;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.section-button:hover {
+  background-color: #ffa366;
+  transform: translateY(-2px);
+}
+
+/* === Mobile View === */
+@media (max-width: 768px) {
+  .section-wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .section-card {
+    width: 100%;
+    max-width: 95%;
+    height: auto;
+    aspect-ratio: 16/9; /* keeps proportions clean */
+    order: 1; /* show image first */
+  }
+
+  .section-info {
+    order: 2; /* show text after image */
+    max-width: 90%;
+    text-align: center;
+  }
+
+  .section-info h2 {
+    font-size: 1.6rem;
+  }
+
+  .section-info p {
+    font-size: 0.95rem;
+  }
+
+  .section-button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.4rem;
+  }
+}
+
+/* === Very Small Screens (phones < 480px) === */
+@media (max-width: 480px) {
+  .section-info h2 {
+    font-size: 1.4rem;
+  }
+  .section-info p {
+    font-size: 0.9rem;
+  }
+  .section-button {
+    padding: 0.5rem 1.2rem;
+    border-radius: 10px;
+  }
+}

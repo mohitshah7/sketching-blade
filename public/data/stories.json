@@ -1,0 +1,49 @@
+[
+  {
+    "id": "1",
+    "title": "Stranger to me!",
+    "type": "Story",
+    "description": "A mysterious boy saves a girl from a crowd...",
+    "coverImage": "/assets/stories/stm/strangertome.jpg",
+     "chapters": [
+      {
+        "title": "Chapter 1 - The Stranger",
+        "content": "/assets/stories/stm/chapter1.txt"
+      },
+      {
+        "title": "Chapter 2 - Entangled",
+        "content": "/assets/stories/stm/chapter2.txt"
+      },
+      {
+        "title": "Chapter 3 - The Truth",
+        "content": "/assets/stories/stm/chapter3.txt"
+      },
+      {
+        "title": "Chapter 4 - Revelation",
+        "content": "/assets/stories/stm/chapter4.txt"
+      },
+      {
+        "title": "Chapter 5 - Akio",
+        "content": "/assets/stories/stm/chapter5.txt"
+      },
+      {
+        "title": "Chapter 6 - Bittersweet",
+        "content": "/assets/stories/stm/chapter6.txt"
+      }
+    ]
+  },
+ {
+    "id": "2",
+    "title": "Moon Princess",
+    "type": "Poem",
+    "description": "A quiet, graceful girl, her silence misread, yet within her drifts an ocean of unseen light.",
+    "coverImage": "/assets/stories/mp/moonprincess.jpg",
+    "chapters": [
+      {
+        "title": "Poem",
+        "content": "/assets/stories/mp/mp.txt"
+      }
+    ]
+  }
+  
+]

@@ -1,0 +1,181 @@
+/* 🎨 Artworks Section */
+.artworks-gallery {
+  padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 3vw, 2rem);
+  background-color: #fff;
+}
+
+/* ✅ Responsive title */
+.gallery-title {
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-family: 'Comic Neue', cursive;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* ✅ Responsive grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: clamp(0.5rem, 1vw, 1rem);
+  justify-items: center;
+}
+
+/* 🎴 Individual Art Card */
+.art-card {
+  position: relative;
+  border-radius: 10px;
+  width: 100%;
+  aspect-ratio: 1 / 1; 
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.art-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 🖼️ Images */
+.art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  display: block;
+  border-radius: inherit;
+}
+
+/* 🔍 Lightbox popup */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ✅ Responsive arrows */
+.nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: none;
+  padding: clamp(0.25rem, 1vw, 0.75rem) clamp(0.5rem, 2vw, 1rem);
+  cursor: pointer;
+  z-index: 10000;
+  transition: background 0.3s ease, transform 0.2s ease;
+  border-radius: 8px;
+}
+
+.nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-arrow.prev {
+  left: 2%;
+}
+
+.nav-arrow.next {
+  right: 2%;
+}
+
+/* 📱 Tablet adjustments */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .lightbox-img {
+    max-width: 95%;
+    max-height: 85%;
+  }
+
+  .gallery-title {
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+  }
+}
+
+/* 📱 Mobile adjustments */
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .art-card:hover {
+    transform: none; /* prevent jumpy hover on mobile */
+    box-shadow: none;
+  }
+
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 80%;
+  }
+
+  .nav-arrow {
+    font-size: 1.3rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+/* ✨ Smooth transition animation */
+.lightbox-content {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.slide-next {
+  animation: slideNext 0.35s ease;
+}
+
+.slide-prev {
+  animation: slidePrev 0.35s ease;
+}
+
+@keyframes slideNext {
+  from {
+    transform: translateX(80px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slidePrev {
+  from {
+    transform: translateX(-80px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+

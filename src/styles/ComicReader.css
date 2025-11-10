@@ -1,0 +1,94 @@
+.comic-reader {
+  background-color: #000;
+  min-height: 100vh;
+  color: #fff;
+  padding: 2rem;
+  position: relative;
+  text-align: center;
+}
+
+.comic-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.comic-audio {
+  margin: 1.5rem 0 2rem;
+}
+
+.comic-pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.comic-page {
+  width: 70%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+}
+
+/* Exit button */
+.exit-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.exit-button:hover {
+  transform: scale(1.1);
+}
+
+/* 📱 Mobile (up to 600px) */
+@media (max-width: 600px) {
+  .comic-reader {
+    padding: 1rem;
+  }
+
+  .comic-title {
+    font-size: 1.5rem;
+  }
+
+  .comic-page {
+    width: 100%; /* Full width for small screens */
+    max-width: 100%;
+  }
+
+  .exit-button {
+    font-size: 1.5rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+/* 📱 Tablets (601px - 900px) */
+@media (max-width: 900px) and (min-width: 601px) {
+  .comic-page {
+    width: 85%;
+    max-width: 500px;
+  }
+
+  .comic-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* 💻 Larger Screens */
+@media (min-width: 1200px) {
+  .comic-page {
+    width: 60%;
+    max-width: 800px; /* allow bigger display on large desktops */
+  }
+
+  .comic-title {
+    font-size: 2.2rem;
+  }
+}

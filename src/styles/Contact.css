@@ -1,0 +1,99 @@
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
+  text-align: center;
+  background: white;
+  color: #000; /* changed from #fff (so text is visible on white bg) */
+  min-height: 100vh;
+}
+
+.contact-image img {
+  width: 100%;           /* take full width of container */
+  max-width: 1057px;     /* cap at your original size */
+  height: auto;          /* auto adjust height */
+  object-fit: cover;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+
+.contact-button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #ff4d6d;
+  color: #fff;
+  padding: 0.8rem 1.6rem;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s;
+  font-size: 1rem;
+}
+
+.contact-button:hover {
+  background: #ff1e50;
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap; /* allows icons to wrap on small screens */
+  justify-content: center;
+}
+
+.social-icon {
+  font-size: 2rem;
+  color: #000000;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  color: #ff4d6d;
+}
+
+/* ========================= */
+/* RESPONSIVE MEDIA QUERIES */
+/* ========================= */
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 2rem 1rem;
+  }
+
+  .contact-button {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.95rem;
+    padding: 0.7rem 1.2rem;
+  }
+
+  .social-icon {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-title {
+    font-size: 1.5rem;
+  }
+
+  .contact-button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .social-icon {
+    font-size: 1.6rem;
+  }
+}

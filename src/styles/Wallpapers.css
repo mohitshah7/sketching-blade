@@ -1,0 +1,89 @@
+/* src/pages/Wallpapers.css */
+
+.wallpaper-gallery {
+  padding: 2rem;
+  background: #ffffff;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.gallery-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(to right, #ffe65a, #f9002e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-img:hover {
+  transform: scale(1.05);
+}
+
+.lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 10, 10, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 3rem;
+  color: white;
+  cursor: pointer;
+}
+
+.lightbox-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+
+.lightbox-controls button,
+.download-btn {
+  background: #222;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.lightbox-controls button:hover,
+.download-btn:hover {
+  background: #444;
+}
