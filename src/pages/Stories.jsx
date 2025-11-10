@@ -6,6 +6,7 @@ export default function Stories() {
   const [selectedStory, setSelectedStory] = useState(null);
   const [chapterContent, setChapterContent] = useState("");
   const [selectedChapter, setSelectedChapter] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetch("/data/stories.json")
@@ -18,14 +19,18 @@ export default function Stories() {
     setSelectedStory(story);
     setChapterContent("");
     setSelectedChapter(null);
-    document.body.style.overflow = "hidden"; // prevent background scroll
+    setIsModalOpen(true);
+    document.body.classList.add("no-scroll");
   };
 
   const closeStory = () => {
-    setSelectedStory(null);
-    setChapterContent("");
-    setSelectedChapter(null);
-    document.body.style.overflow = "auto";
+    setIsModalOpen(false);
+    setTimeout(() => {
+      setSelectedStory(null);
+      setChapterContent("");
+      setSelectedChapter(null);
+      document.body.classList.remove("no-scroll");
+    }, 300); // wait for fade-out animation
   };
 
   const loadChapter = async (chapter) => {
@@ -68,8 +73,9 @@ export default function Stories() {
         </div>
       )}
 
-      {selectedStory && (
-        <div className="story-modal">
+      {/* Modal */}
+      {isModalOpen && selectedStory && (
+        <div className={`story-modal ${isModalOpen ? "show" : ""}`}>
           <div className="story-modal-content">
             <button className="close-btn" onClick={closeStory}>
               ✖
