@@ -1,122 +1,191 @@
-import React, { useState, useEffect } from "react";
-import "../styles/Stories.css";
+import React, { useState, useEffect, useCallback } from 'react';
+import StoryCard from '../components/StoryCard';
+import PoemCard from '../components/PoemCard';
+import StoryReader from '../components/StoryReader';
+import PoemReader from '../components/PoemReader';
+import '../styles/Stories.css';
+
+const STRAPI_URL = import.meta.env.VITE_STRAPI_URL;
 
 export default function Stories() {
-  const [storiesData, setStoriesData] = useState([]);
-  const [selectedStory, setSelectedStory] = useState(null);
-  const [chapterContent, setChapterContent] = useState("");
-  const [selectedChapter, setSelectedChapter] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [stories, setStories] = useState([]);
+  const [poems, setPoems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [activeSection, setActiveSection] = useState('stories'); // 'stories' | 'poems'
 
-  useEffect(() => {
-    fetch("/data/stories.json")
-      .then((res) => res.json())
-      .then((data) => setStoriesData(data))
-      .catch((err) => console.error("Error loading stories.json:", err));
+  const [selectedStory, setSelectedStory] = useState(null);
+  const [selectedPoem, setSelectedPoem] = useState(null);
+
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      if (!STRAPI_URL) {
+        throw new Error('Strapi URL environment variable (VITE_STRAPI_URL) is not defined.');
+      }
+
+      const [storiesRes, poemsRes] = await Promise.all([
+        fetch(`${STRAPI_URL}/api/stories?populate=*`),
+        fetch(`${STRAPI_URL}/api/poems?populate=*`),
+      ]);
+
+      if (!storiesRes.ok) {
+        throw new Error(`Failed to fetch stories (HTTP ${storiesRes.status})`);
+      }
+
+      const storiesJson = await storiesRes.json();
+      setStories(storiesJson.data || []);
+
+      if (poemsRes.ok) {
+        const poemsJson = await poemsRes.json();
+        setPoems(poemsJson.data || []);
+      } else {
+        console.warn('Could not fetch poems:', poemsRes.statusText);
+        setPoems([]);
+      }
+    } catch (err) {
+      console.error('Error fetching Stories & Poems from Strapi:', err);
+      setError(err.message || 'Unable to connect to the content server.');
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  const openStory = (story) => {
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  // Handle modal body scroll lock
+  const openStory = useCallback((story) => {
     setSelectedStory(story);
-    setChapterContent("");
-    setSelectedChapter(null);
-    setIsModalOpen(true);
-    document.body.classList.add("no-scroll");
-  };
+    setSelectedPoem(null);
+    document.body.classList.add('no-scroll');
+  }, []);
 
-  const closeStory = () => {
-    setIsModalOpen(false);
-    setTimeout(() => {
-      setSelectedStory(null);
-      setChapterContent("");
-      setSelectedChapter(null);
-      document.body.classList.remove("no-scroll");
-    }, 300); // wait for fade-out animation
-  };
+  const closeStory = useCallback(() => {
+    setSelectedStory(null);
+    document.body.classList.remove('no-scroll');
+  }, []);
 
-  const loadChapter = async (chapter) => {
-    try {
-      const res = await fetch(chapter.content);
-      const text = await res.text();
-      setChapterContent(text);
-      setSelectedChapter(chapter.title);
-    } catch (err) {
-      console.error("Error loading chapter:", err);
-    }
-  };
+  const openPoem = useCallback((poem) => {
+    setSelectedPoem(poem);
+    setSelectedStory(null);
+    document.body.classList.add('no-scroll');
+  }, []);
+
+  const closePoem = useCallback(() => {
+    setSelectedPoem(null);
+    document.body.classList.remove('no-scroll');
+  }, []);
+
+  // Clean up body class if component unmounts with modal open
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, []);
 
   return (
-    <div className="stories-container">
-      <h1 className="stories-title">Stories & Poems</h1>
+    <div className="stories-gallery-page">
+      {/* Page Title */}
+      <h1 className="gallery-title">Stories & Poems</h1>
 
-      {storiesData.length === 0 ? (
-        <p className="loading">Loading stories...</p>
-      ) : (
-        <div className="stories-grid">
-          {storiesData.map((story) => (
-            <div
-              key={story.id}
-              className="story-card"
-              onClick={() => openStory(story)}
+      {/* Stories / Poems Switch Toggle */}
+      {!loading && !error && (
+        <div className="section-toggle-container">
+          <div className="section-toggle" role="tablist" aria-label="Content selection">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeSection === 'stories'}
+              className={`toggle-tab-btn ${activeSection === 'stories' ? 'active' : ''}`}
+              onClick={() => setActiveSection('stories')}
             >
-              <img
-                src={story.coverImage}
-                alt={story.title}
-                className="story-thumbnail"
-              />
-              <div className="story-info">
-                <h2>{story.title}</h2>
-                <p className="story-type">{story.type}</p>
-                <p className="story-desc">{story.description}</p>
-              </div>
-            </div>
-          ))}
+              Stories
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeSection === 'poems'}
+              className={`toggle-tab-btn ${activeSection === 'poems' ? 'active' : ''}`}
+              onClick={() => setActiveSection('poems')}
+            >
+              Poems
+            </button>
+          </div>
         </div>
       )}
 
-      {/* Modal */}
-      {isModalOpen && selectedStory && (
-        <div className={`story-modal ${isModalOpen ? "show" : ""}`}>
-          <div className="story-modal-content">
-            <button className="close-btn" onClick={closeStory}>
-              ✖
-            </button>
+      {/* Loading State */}
+      {loading && (
+        <div className="status-container loading-container" role="status">
+          <div className="loading-spinner" aria-hidden="true" />
+          <p className="status-text">Loading content...</p>
+        </div>
+      )}
 
-            <div className="modal-scroll">
-              <img
-                src={selectedStory.coverImage}
-                alt={selectedStory.title}
-                className="modal-cover"
-              />
-              <h2>{selectedStory.title}</h2>
-              <p className="modal-type">{selectedStory.type}</p>
-              <p className="modal-summary">{selectedStory.description}</p>
+      {/* Error State */}
+      {!loading && error && (
+        <div className="status-container error-container" role="alert">
+          <h2 className="status-title">Unable to Load Content</h2>
+          <p className="status-text">{error}</p>
+          <button type="button" className="retry-btn" onClick={fetchData}>
+            Try Again
+          </button>
+        </div>
+      )}
 
-              <h3>Chapters</h3>
-              <ul className="chapter-list">
-                {selectedStory.chapters.map((chapter, idx) => (
-                  <li
-                    key={idx}
-                    onClick={() => loadChapter(chapter)}
-                    className={
-                      selectedChapter === chapter.title ? "active" : ""
-                    }
-                  >
-                    {chapter.title}
-                  </li>
-                ))}
-              </ul>
-
-              {chapterContent && (
-                <div className="chapter-content">
-                  <h4>{selectedChapter}</h4>
-                  {chapterContent.split("\n").map((line, idx) => (
-                    <p key={idx}>{line}</p>
-                  ))}
-                </div>
-              )}
-            </div>
+      {/* Main Content: Displays ONLY the active section with smooth transition */}
+      {!loading && !error && (
+        <div className="stories-sections-container">
+          <div className="toggle-content-pane" key={activeSection}>
+            {activeSection === 'stories' ? (
+              <section className="stories-section" aria-label="Stories">
+                {stories.length === 0 ? (
+                  <p className="empty-section-message">No stories available yet.</p>
+                ) : (
+                  <div className="stories-grid">
+                    {stories.map((story) => (
+                      <StoryCard
+                        key={story.documentId || story.id}
+                        story={story}
+                        onOpen={openStory}
+                      />
+                    ))}
+                  </div>
+                )}
+              </section>
+            ) : (
+              <section className="stories-section" aria-label="Poems">
+                {poems.length === 0 ? (
+                  <p className="empty-section-message">No poems available yet.</p>
+                ) : (
+                  <div className="stories-grid">
+                    {poems.map((poem) => (
+                      <PoemCard
+                        key={poem.documentId || poem.id}
+                        poem={poem}
+                        onOpen={openPoem}
+                      />
+                    ))}
+                  </div>
+                )}
+              </section>
+            )}
           </div>
         </div>
+      )}
+
+      {/* Story Reader Modal */}
+      {selectedStory && (
+        <StoryReader story={selectedStory} onClose={closeStory} />
+      )}
+
+      {/* Poem Reader Modal */}
+      {selectedPoem && (
+        <PoemReader poem={selectedPoem} onClose={closePoem} />
       )}
     </div>
   );

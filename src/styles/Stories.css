@@ -1,244 +1,1081 @@
-/* 🌌 Main container */
-.stories-container {
-  padding: 40px 20px;
+/* ==========================================================================
+   Sketching Blade — Stories & Poems CSS
+   Design System Matching Artworks, GodArts, Home & Navbar
+   ========================================================================== */
+
+/* 📖 Main Page Container */
+.stories-gallery-page {
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+  background-color: #ffffff;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: #fff;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  transition: all 0.3s ease;
+  color: #222222;
+  font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
+  box-sizing: border-box;
   overflow-x: hidden;
 }
 
-/* 🌠 Title */
-.stories-title {
-  font-size: 2.4rem;
-  margin-bottom: 35px;
-  letter-spacing: 1px;
+/* 🎨 Gallery Title */
+.stories-gallery-page .gallery-title {
+  text-align: center;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-family: 'Comic Neue', cursive;
+  margin-bottom: 1.5rem;
+  color: #222222;
 }
 
-/* 🌠 Story grid */
-.stories-grid {
+/* ==========================================================================
+   Stories / Poems Switch Toggle
+   ========================================================================== */
+
+.section-toggle-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 25px;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.section-toggle {
+  background: #fff8ef;
+  border: 2px solid #ffeed0;
+  border-radius: 9999px;
+  padding: 4px;
+  display: inline-flex;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.toggle-tab-btn {
+  font-family: 'Comic Neue', cursive;
+  font-size: 1.05rem;
+  font-weight: bold;
+  padding: 8px 28px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: #777777;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.toggle-tab-btn:hover:not(.active) {
+  color: #cc5c00;
+}
+
+.toggle-tab-btn.active {
+  background-color: #ff944d;
+  color: #ffffff;
+  box-shadow: 2px 2px 0px #cc5c00;
+}
+
+.toggle-content-pane {
+  animation: fadeInToggle 0.25s ease-out;
+}
+
+@keyframes fadeInToggle {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📦 Sections Container */
+.stories-sections-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 📑 Section Styling */
+.stories-section {
+  text-align: left;
+}
+
+.empty-section-message {
+  padding: 24px;
+  text-align: center;
+  background: #fffdf8;
+  border: 1px dashed #ffd8b3;
+  border-radius: 12px;
+  color: #777777;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   Story & Poem Cards Grid
+   ========================================================================== */
+
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
   width: 100%;
 }
 
-/* 🧊 Story card */
 .story-card {
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
+  background: #ffffff;
+  border: 2px solid #ffeed0;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
   text-align: left;
-  flex: 1 1 calc(25% - 25px); /* 4 per row on large screens */
-  max-width: calc(25% - 25px);
+  outline: none;
 }
 
-.story-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+.story-card:hover,
+.story-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  border-color: #ff944d;
+}
+
+/* Card Thumbnail */
+.card-image-wrap {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: #fdf6ec;
 }
 
 .story-thumbnail {
   width: 100%;
-  height: 300px;
+  height: 100%;
   object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
 }
 
-.story-info {
-  padding: 12px;
+.story-card:hover .story-thumbnail {
+  transform: scale(1.03);
 }
 
-.story-info h2 {
-  font-size: 1.2rem;
-  margin: 0 0 6px;
-  color: #fff;
-}
-
-.story-type {
-  font-size: 0.85rem;
-  color: #bbb;
-  margin-bottom: 6px;
-}
-
-.story-desc {
-  font-size: 0.9rem;
-  color: #ccc;
-  line-height: 1.4;
-}
-
-/* 🌙 Modal Overlay */
-.story-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 10, 10, 0.95);
-  z-index: 2000;
-  overflow-y: auto; /* ✅ Scroll entire modal smoothly */
+.card-placeholder-img {
+  width: 100%;
+  height: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
-  padding: 60px 15px;
-  animation: fadeIn 0.3s ease;
+  color: #999999;
+  font-size: 0.85rem;
+  font-family: 'Comic Neue', cursive;
+  background: #fef8ee;
 }
 
-/* Modal Content Box */
-.story-modal-content {
-  background: #1b2735;
-  padding: 30px;
-  border-radius: 14px;
-  width: 90%;
-  max-width: 800px;
-  position: relative;
-  color: #fff;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-  animation: slideUp 0.3s ease;
-}
-
-/* Close Button */
-.close-btn {
+/* Card Badges */
+.card-badge {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  background: transparent;
-  border: none;
-  font-size: 1.8rem;
-  color: #fff;
-  cursor: pointer;
+  top: 10px;
+  right: 10px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.story-badge {
+  background: rgba(255, 255, 255, 0.95);
+  color: #d96200;
+  border: 1px solid #ffd8b3;
+}
+
+.poem-badge {
+  background: rgba(255, 255, 255, 0.95);
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+/* Card Info */
+.story-info {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #222222;
+  line-height: 1.3;
   transition: color 0.2s ease;
 }
-.close-btn:hover {
+
+.story-card:hover .card-title {
   color: #ff944d;
 }
 
-/* Cover Image */
-.modal-cover {
-  width: 100%;
-  max-height: 500px;
-  object-fit: contain;
-  border-radius: 10px;
-  margin-bottom: 20px;
+/* Genre Pills */
+.genre-pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
 }
 
-/* 📜 Chapters */
-.chapter-list {
+.genre-pill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #fff6ee;
+  color: #cc5c00;
+  padding: 2px 7px;
+  border-radius: 6px;
+  border: 1px solid #ffd8b3;
+  white-space: nowrap;
+}
+
+/* Card Description */
+.story-desc {
+  font-size: 0.86rem;
+  color: #555555;
+  line-height: 1.45;
+  margin: 0 0 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+/* Card Footer Action */
+.card-footer-action {
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid #ffeed0;
+}
+
+.read-cta {
+  font-size: 0.88rem;
+  font-family: 'Comic Neue', cursive;
+  font-weight: bold;
+  color: #ff944d;
+  display: inline-block;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.story-card:hover .read-cta {
+  transform: translateX(3px);
+  color: #cc5c00;
+}
+
+/* ==========================================================================
+   Story Reader Modal — Optimized 60FPS Scrolling
+   ========================================================================== */
+
+.reader-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 10, 10, 0.88);
+  /* No backdrop-filter blur: prevents GPU repainting during content scroll */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem;
+  box-sizing: border-box;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+.reader-container {
+  background-color: #fffdf8;
+  border: 3px solid #ffeed0;
+  border-radius: 20px;
+  width: min(1080px, 100%);
+  height: 88vh;
+  max-height: 820px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #222222;
+  transform: translateZ(0); /* Hardware accelerated composite layer */
+  animation: modalSlideUp 0.25s ease;
+}
+
+/* Desktop Close Button */
+.reader-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: #ffffff;
+  border: 1px solid #ffeed0;
+  color: #444444;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.reader-close-btn:hover {
+  background: #ff944d;
+  color: #ffffff;
+  border-color: #ff944d;
+}
+
+/* Desktop Header: Story Overview */
+.story-overview-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border-bottom: 2px solid #ffeed0;
+  flex-shrink: 0;
+}
+
+.overview-cover-wrap {
+  width: 75px;
+  height: 105px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  border: 1px solid #ffeed0;
+}
+
+.overview-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.overview-meta {
+  flex: 1;
+  min-width: 0;
+  padding-right: 40px;
+}
+
+.overview-title {
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: #222222;
+  line-height: 1.25;
+}
+
+.overview-genres {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #cc5c00;
+  font-weight: 700;
+  font-family: 'Comic Neue', cursive;
+  margin-bottom: 6px;
+}
+
+.genre-bullet {
+  color: #ffd8b3;
+  font-size: 0.65rem;
+}
+
+.overview-description {
+  font-size: 0.84rem;
+  color: #555555;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Mobile Header: ONLY Back, Story Title, Chapter Selector
+   ========================================================================== */
+
+.reader-mobile-header {
+  display: none; /* Desktop default */
+  padding: 12px 14px 10px;
+  background: #ffffff;
+  border-bottom: 2px solid #ffeed0;
+  flex-shrink: 0;
+}
+
+.mobile-header-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.mobile-back-btn {
+  background: transparent;
+  border: none;
+  color: #ff944d;
+  font-family: 'Comic Neue', cursive;
+  font-size: 0.95rem;
+  font-weight: bold;
+  padding: 4px 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mobile-story-title {
+  font-family: 'Comic Neue', cursive;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #222222;
+  margin: 0 0 8px;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.mobile-chapter-select-bar {
+  width: 100%;
+}
+
+.chapter-select-custom {
+  position: relative;
+  width: 100%;
+}
+
+.chapter-dropdown {
+  width: 100%;
+  padding: 8px 30px 8px 12px;
+  background: #fffaf4;
+  color: #222222;
+  border: 1.5px solid #ffd8b3;
+  border-radius: 8px;
+  font-family: 'Comic Neue', cursive;
+  font-size: 0.92rem;
+  font-weight: bold;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.chapter-dropdown:focus {
+  border-color: #ff944d;
+}
+
+.dropdown-chevron {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #cc5c00;
+  pointer-events: none;
+  font-size: 0.75rem;
+}
+
+.mobile-header-divider {
+  display: none;
+}
+
+/* ==========================================================================
+   Reader Body: Split Layout
+   ========================================================================== */
+
+.reader-split-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Chapter Sidebar (Desktop) */
+.reader-chapter-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: #fff8ef;
+  border-right: 1.5px solid #ffeed0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-header {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffeed0;
+}
+
+.sidebar-header h3 {
+  font-family: 'Comic Neue', cursive;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #333333;
+  margin: 0;
+}
+
+.sidebar-count {
+  font-size: 0.75rem;
+  font-family: 'Comic Neue', cursive;
+  background: #ffffff;
+  color: #cc5c00;
+  border: 1px solid #ffd8b3;
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 6px;
+}
+
+.sidebar-chapter-list {
   list-style: none;
   padding: 0;
-  margin: 15px 0;
-  text-align: left;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
-.chapter-list li {
-  padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.08);
+.sidebar-chapter-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
   border-radius: 8px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.chapter-list li:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-.chapter-list li.active {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-/* 📖 Chapter content */
-.chapter-content {
+  color: #444444;
   text-align: left;
-  margin-top: 20px;
-  white-space: pre-wrap;
-  color: #ddd;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 15px;
-  border-radius: 10px;
+  font-family: 'Comic Neue', cursive;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-/* 🎞 Animations */
-@keyframes fadeIn {
+.sidebar-chapter-item:hover {
+  background: #fff0db;
+  color: #cc5c00;
+}
+
+.sidebar-chapter-item.active {
+  background: #ffe8cc;
+  color: #cc5c00;
+  font-weight: bold;
+  border-left: 3px solid #ff944d;
+}
+
+.chapter-item-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #cc5c00;
+  background: #ffffff;
+  border: 1px solid #ffd8b3;
+  padding: 1px 5px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.sidebar-chapter-item.active .chapter-item-num {
+  background: #ff944d;
+  color: #ffffff;
+  border-color: #ff944d;
+}
+
+.chapter-item-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   Reading Content Pane — Natural, Responsive Scrolling
+   ========================================================================== */
+
+.reader-content-pane {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* Momentum scrolling on touch */
+  overscroll-behavior-y: contain; /* Prevents background dragging */
+  scroll-behavior: auto; /* Instant natural scroll without laggy smoothing */
+  padding: 24px 32px;
+  background: #fffdf8;
+  box-sizing: border-box;
+  transform: translateZ(0); /* Hardware accelerated composite layer */
+}
+
+.reading-article {
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.chapter-header {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.chapter-kicker {
+  font-size: 0.8rem;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #d96200;
+  margin-bottom: 4px;
+}
+
+.chapter-headline {
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  color: #222222;
+  margin: 0 0 10px;
+  line-height: 1.25;
+}
+
+.chapter-divider {
+  width: 45px;
+  height: 3px;
+  background: #ff944d;
+  border-radius: 2px;
+}
+
+/* Rich Story Typography */
+.rich-chapter-content {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #2c3e50;
+  letter-spacing: 0.01em;
+  text-align: left;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.rich-chapter-content p {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+}
+
+.rich-chapter-content p:last-child {
+  margin-bottom: 0;
+}
+
+.rich-chapter-content strong,
+.rich-chapter-content b {
+  color: #111111;
+  font-weight: 700;
+}
+
+.rich-chapter-content em,
+.rich-chapter-content i {
+  color: #333333;
+  font-style: italic;
+}
+
+.rich-chapter-content h1,
+.rich-chapter-content h2,
+.rich-chapter-content h3,
+.rich-chapter-content h4 {
+  font-family: 'Comic Neue', cursive;
+  color: #222222;
+  margin-top: 1.6rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.rich-chapter-content blockquote {
+  border-left: 3px solid #ff944d;
+  margin: 1.2rem 0;
+  padding: 6px 16px;
+  background: #fff8ef;
+  font-style: italic;
+  color: #444444;
+  border-radius: 0 8px 8px 0;
+}
+
+.reader-empty-chapter {
+  text-align: center;
+  padding: 40px 20px;
+  color: #777777;
+  font-family: 'Comic Neue', cursive;
+}
+
+/* Footer Navigation Bar */
+.reader-footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #ffffff;
+  border-top: 1.5px solid #ffeed0;
+  flex-shrink: 0;
+}
+
+.reader-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 18px;
+  background-color: #ff944d;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 2px 2px 0px #cc5c00;
+  font-family: 'Comic Neue', cursive;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.reader-nav-btn:hover:not(:disabled) {
+  background-color: #ffa366;
+  transform: translateY(-1px);
+}
+
+.reader-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.chapter-progress-indicator {
+  font-size: 0.85rem;
+  font-family: 'Comic Neue', cursive;
+  color: #666666;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   Poem Reader Modal
+   ========================================================================== */
+
+.poem-reader-container {
+  max-width: 720px;
+}
+
+.poem-reader-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border-bottom: 2px solid #ffeed0;
+  flex-shrink: 0;
+}
+
+.poem-cover-wrap {
+  width: 70px;
+  height: 95px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ffeed0;
+}
+
+.poem-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.poem-meta {
+  flex: 1;
+  min-width: 0;
+  padding-right: 35px;
+}
+
+.poem-kicker {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #16a34a;
+  margin-bottom: 2px;
+}
+
+.poem-title {
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: #222222;
+  line-height: 1.25;
+}
+
+.poem-description {
+  font-size: 0.82rem;
+  color: #666666;
+  line-height: 1.4;
+  margin: 4px 0 0;
+  font-style: italic;
+}
+
+.poem-divider {
+  height: 1px;
+  background: #ffeed0;
+  width: 100%;
+}
+
+.poem-content-pane {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scroll-behavior: auto;
+  padding: 24px 28px 36px;
+  transform: translateZ(0);
+}
+
+.rich-poem-content {
+  max-width: 540px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #2c3e50;
+  text-align: left;
+  letter-spacing: 0.015em;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+.rich-poem-content p {
+  margin-top: 0;
+  margin-bottom: 1.4rem;
+  padding-left: 10px;
+  border-left: 2px solid #ffd8b3;
+}
+
+.rich-poem-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Loading, Error, and Empty States
+   ========================================================================== */
+
+.status-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #fffdf8;
+  border: 2px dashed #ffeed0;
+  border-radius: 16px;
+  max-width: 500px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 38px;
+  height: 38px;
+  border: 3px solid #ffeed0;
+  border-top-color: #ff944d;
+  border-radius: 50%;
+  animation: spinnerRotate 0.8s linear infinite;
+  margin-bottom: 12px;
+}
+
+.status-title {
+  font-family: 'Comic Neue', cursive;
+  font-size: 1.3rem;
+  margin: 0 0 6px;
+  color: #222222;
+}
+
+.status-text {
+  font-size: 0.95rem;
+  color: #666666;
+  margin: 0 0 14px;
+}
+
+.retry-btn {
+  background-color: #ff944d;
+  color: #ffffff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 0px #cc5c00;
+  font-family: 'Comic Neue', cursive;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.retry-btn:hover {
+  background-color: #ffa366;
+  transform: translateY(-1px);
+}
+
+/* Animations */
+@keyframes modalFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* 📱 Responsive Design */
-@media (max-width: 1200px) {
-  .story-card {
-    flex: 1 1 calc(33.333% - 25px); /* 3 per row */
-    max-width: calc(33.333% - 25px);
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
-@media (max-width: 768px) {
-  .story-card {
-    flex: 1 1 calc(50% - 25px); /* 2 per row */
-    max-width: calc(50% - 25px);
-  }
-
-  .story-modal-content {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .stories-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .story-card {
-    flex: 1 1 100%;
-    max-width: 90%;
-  }
-
-  .story-thumbnail {
-    height: 220px;
-  }
-
-  .story-modal {
-    padding: 40px 10px;
-  }
-
-  .story-modal-content {
-    width: 100%;
-  }
-}
-/* Prevent background scrolling when modal is open */
-.no-scroll {
-  overflow: hidden;
-}
-
-/* Smooth modal appearance */
-.story-modal {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: all 0.3s ease;
-}
-
-.story-modal.show {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Ensure modal stays fixed and prevents background clicks */
-.story-modal {
-  pointer-events: auto;
+@keyframes spinnerRotate {
+  to { transform: rotate(360deg); }
 }
 
 body.no-scroll {
-  pointer-events: none;
+  overflow: hidden !important;
 }
 
-body.no-scroll .story-modal {
-  pointer-events: auto;
+/* Utility Display Classes */
+.mobile-only {
+  display: none !important;
+}
+
+.desktop-only {
+  display: flex;
+}
+
+/* ==========================================================================
+   📱 Mobile Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .stories-gallery-page {
+    padding: 1.25rem 0.85rem 3rem;
+  }
+
+  .section-toggle-container {
+    margin-bottom: 1.5rem;
+  }
+
+  .toggle-tab-btn {
+    padding: 7px 22px;
+    font-size: 0.95rem;
+  }
+
+  .stories-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin: 0 auto;
+    gap: 1rem;
+  }
+
+  .card-image-wrap {
+    height: 220px;
+  }
+
+  /* Reader Modal on Mobile */
+  .reader-overlay {
+    padding: 0;
+  }
+
+  .reader-container {
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+    border: none;
+  }
+
+  /* Show mobile-only header, hide desktop-only header */
+  .mobile-only {
+    display: block !important;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* Mobile Content Pane — Lightweight 60fps Native Scrolling */
+  .reader-content-pane {
+    padding: 14px 16px 20px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+
+  .reading-article {
+    max-width: 100%;
+  }
+
+  .chapter-header {
+    margin-bottom: 14px;
+  }
+
+  .chapter-kicker {
+    font-size: 0.75rem;
+    margin-bottom: 2px;
+  }
+
+  .chapter-headline {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+
+  .chapter-divider {
+    width: 36px;
+    height: 2.5px;
+    margin-bottom: 14px;
+  }
+
+  /* Book-like mobile typography */
+  .rich-chapter-content,
+  .rich-poem-content {
+    font-size: 0.95rem;
+    line-height: 1.68;
+    color: #2c3e50;
+  }
+
+  .rich-chapter-content p {
+    margin-bottom: 1rem;
+  }
+
+  .reader-footer-nav {
+    padding: 10px 14px;
+  }
+
+  .reader-nav-btn {
+    padding: 7px 14px;
+    font-size: 0.85rem;
+  }
+
+  .chapter-progress-indicator {
+    font-size: 0.8rem;
+  }
+
+  .poem-content-pane {
+    padding: 14px 16px 24px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
 }
