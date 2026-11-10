@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { getStrapiMediaUrl, getGenreName } from '../utils/strapi';
 
+const DESC_LIMIT = 150;
+
 export default function StoryCard({ story, onOpen }) {
+  const [isExpanded, setIsExpanded] = useState(false);
   const coverUrl = getStrapiMediaUrl(story.CoverImage);
   const chapterCount = story.chapters ? story.chapters.length : 0;
   const genres = story.genres || [];
+
+  const description = story.Description || '';
+  const isLong = description.length > DESC_LIMIT;
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       onOpen(story);
     }
+  };
+
+  const handleToggleExpand = (e) => {
+    e.stopPropagation();
+    setIsExpanded((prev) => !prev);
   };
 
   return (
@@ -57,8 +68,22 @@ export default function StoryCard({ story, onOpen }) {
           </div>
         )}
 
-        {story.Description && (
-          <p className="story-desc">{story.Description}</p>
+        {description && (
+          <>
+            <p className={`story-desc ${!isExpanded && isLong ? 'clamp-text' : ''}`}>
+              {description}
+            </p>
+            {isLong && (
+              <button
+                type="button"
+                className="read-more-btn"
+                onClick={handleToggleExpand}
+                aria-expanded={isExpanded}
+              >
+                {isExpanded ? 'Read less ▲' : 'Read more ▼'}
+              </button>
+            )}
+          </>
         )}
 
         <div className="card-footer-action">

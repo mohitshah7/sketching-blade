@@ -109,8 +109,8 @@
 
 .stories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
   width: 100%;
 }
 
@@ -139,7 +139,7 @@
 .card-image-wrap {
   position: relative;
   width: 100%;
-  height: 240px;
+  height: 300px;
   overflow: hidden;
   background: #fdf6ec;
 }
@@ -147,7 +147,9 @@
 .story-thumbnail {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 6px;
+  box-sizing: border-box;
   display: block;
   transition: transform 0.35s ease;
 }
@@ -237,15 +239,39 @@
 
 /* Card Description */
 .story-desc {
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   color: #555555;
-  line-height: 1.45;
-  margin: 0 0 10px;
+  line-height: 1.5;
+  margin: 0 0 6px;
+  flex: 1;
+}
+
+.story-desc.clamp-text {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  flex: 1;
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #ff944d;
+  font-family: 'Comic Neue', cursive;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 0 10px;
+  display: inline-block;
+  text-align: left;
+  outline: none;
+  transition: color 0.15s ease;
+}
+
+.read-more-btn:hover {
+  color: #cc5c00;
+  text-decoration: underline;
 }
 
 /* Card Footer Action */
@@ -291,9 +317,9 @@
   background-color: #fffdf8;
   border: 3px solid #ffeed0;
   border-radius: 20px;
-  width: min(1080px, 100%);
-  height: 88vh;
-  max-height: 820px;
+  width: min(1200px, 95vw);
+  height: 92vh;
+  max-height: 900px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
   position: relative;
   display: flex;
@@ -769,7 +795,7 @@
    ========================================================================== */
 
 .poem-reader-container {
-  max-width: 720px;
+  max-width: 840px;
 }
 
 .poem-reader-header {
@@ -986,13 +1012,13 @@ body.no-scroll {
 
   .stories-grid {
     grid-template-columns: 1fr;
-    max-width: 360px;
+    max-width: 400px;
     margin: 0 auto;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
   .card-image-wrap {
-    height: 220px;
+    height: 280px;
   }
 
   /* Reader Modal on Mobile */

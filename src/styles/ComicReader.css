@@ -1,94 +1,129 @@
+/* ComicReader.css */
+
 .comic-reader {
-  background-color: #000;
+  background-color: #0c0a18;
   min-height: 100vh;
-  color: #fff;
-  padding: 2rem;
+  color: #f1f1f1;
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+  padding-inline: clamp(1rem, 3.5vw, 2.5rem);
   position: relative;
   text-align: center;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Fixed Exit Button with frosted glass effect */
+.comic-reader-exit-btn {
+  position: fixed;
+  top: clamp(0.75rem, 2vw, 1.5rem);
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(15, 12, 41, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1200;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+@media (hover: hover) {
+  .comic-reader-exit-btn:hover {
+    transform: scale(1.08);
+    background: rgba(255, 148, 77, 0.9);
+    border-color: #ff944d;
+  }
+}
+
+/* Reader Main Content Container */
+.comic-reader-content {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .comic-title {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  margin-bottom: clamp(0.75rem, 1.5vw, 1.25rem);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  word-break: break-word;
+  line-height: 1.25;
 }
 
-.comic-audio {
-  margin: 1.5rem 0 2rem;
+/* Compact Soundtrack Audio Player */
+.comic-audio-container {
+  width: min(100%, 340px);
+  margin: clamp(0.5rem, 1.5vw, 1rem) auto clamp(1.5rem, 3vw, 2.5rem);
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  box-sizing: border-box;
 }
 
+.comic-audio-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ff944d;
+}
+
+.comic-audio-element {
+  width: 100%;
+  height: 36px;
+  border-radius: 9999px;
+  outline: none;
+}
+
+/* Comic Pages Vertical Stack */
 .comic-pages {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  width: 100%;
 }
 
 .comic-page {
-  width: 70%;
-  max-width: 600px;
-  border-radius: 10px;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  border-radius: clamp(6px, 1.5vw, 12px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+  display: block;
+  object-fit: contain;
 }
 
-/* Exit button */
-.exit-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: transparent;
-  border: none;
-  font-size: 2rem;
-  color: #fff;
-  cursor: pointer;
-  transition: transform 0.2s;
+/* Loading & Error States */
+.comic-reader-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: #cccccc;
+  font-size: 1.15rem;
 }
 
-.exit-button:hover {
-  transform: scale(1.1);
-}
-
-/* 📱 Mobile (up to 600px) */
-@media (max-width: 600px) {
-  .comic-reader {
-    padding: 1rem;
-  }
-
-  .comic-title {
-    font-size: 1.5rem;
-  }
-
-  .comic-page {
-    width: 100%; /* Full width for small screens */
-    max-width: 100%;
-  }
-
-  .exit-button {
-    font-size: 1.5rem;
-    top: 0.5rem;
-    right: 0.5rem;
-  }
-}
-
-/* 📱 Tablets (601px - 900px) */
-@media (max-width: 900px) and (min-width: 601px) {
-  .comic-page {
-    width: 85%;
-    max-width: 500px;
-  }
-
-  .comic-title {
-    font-size: 1.8rem;
-  }
-}
-
-/* 💻 Larger Screens */
-@media (min-width: 1200px) {
-  .comic-page {
-    width: 60%;
-    max-width: 800px; /* allow bigger display on large desktops */
-  }
-
-  .comic-title {
-    font-size: 2.2rem;
-  }
+.comic-reader-state.error {
+  color: #ff9999;
 }

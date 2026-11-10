@@ -18,14 +18,28 @@ export const getStrapiBaseUrl = () => {
  */
 export const getStrapiMediaUrl = (media) => {
   if (!media) return '';
-  const target = Array.isArray(media) ? media[0] : media;
-  const url = target?.url || (typeof target === 'string' ? target : '');
-  if (!url) return '';
-  if (url.startsWith('http://') || url.startsWith('https://')) {
-    return url;
+  const item = Array.isArray(media) ? media[0] : media;
+  if (!item) return '';
+
+  let rawUrl = '';
+  if (typeof item === 'string') {
+    rawUrl = item;
+  } else if (item.url) {
+    rawUrl = item.url;
+  } else if (item.data?.attributes?.url) {
+    rawUrl = item.data.attributes.url;
+  } else if (item.data?.url) {
+    rawUrl = item.data.url;
+  } else if (item.attributes?.url) {
+    rawUrl = item.attributes.url;
+  }
+
+  if (!rawUrl) return '';
+  if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://')) {
+    return rawUrl;
   }
   const baseUrl = getStrapiBaseUrl();
-  return `${baseUrl}${url}`;
+  return `${baseUrl}${rawUrl}`;
 };
 
 /**
