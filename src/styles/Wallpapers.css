@@ -1,45 +1,194 @@
-/* src/pages/Wallpapers.css */
+/* src/styles/Wallpapers.css */
 
-.wallpaper-gallery {
-  padding: 2rem;
-  background: #ffffff;
+/* ============================================================
+   PAGE CONTAINER
+   ============================================================ */
+.wallpapers-page {
   min-height: 100vh;
+  background: #0d0d0d;
+  color: #fff;
+  padding-block: clamp(1.5rem, 4vw, 3rem);
+  padding-inline: clamp(1rem, 4vw, 3rem);
+}
+
+/* ============================================================
+   TITLE
+   ============================================================ */
+.wallpapers-title {
+  text-align: center;
+  font-family: 'Comic Neue', cursive;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   TOGGLE
+   ============================================================ */
+.wallpapers-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.6rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  background: #181920;
+  color: #aaa;
+  font-family: 'Comic Neue', cursive;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  letter-spacing: 0.03em;
+}
+
+.toggle-btn:hover {
+  border-color: #ff944d;
   color: #fff;
 }
 
-.gallery-title {
+.toggle-btn.active {
+  background: #ff944d;
+  border-color: #ff944d;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(255, 148, 77, 0.35);
+}
+
+/* ============================================================
+   CONTENT WRAPPER — max-width guard
+   ============================================================ */
+.wallpapers-inner {
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+/* ============================================================
+   STATUS MESSAGES
+   ============================================================ */
+.wallpapers-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30vh;
+}
+
+.wallpapers-loading,
+.wallpapers-empty {
+  color: #aaa;
+  font-size: 1.05rem;
+}
+
+.wallpapers-error {
+  color: #ff6b6b;
+  font-size: 1rem;
   text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  background: linear-gradient(to right, #ffe65a, #f9002e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-}
-
-.gallery-img {
-  width: 100%;
-  height: auto;
+  padding: 1rem 1.5rem;
+  border: 1px solid rgba(255, 107, 107, 0.35);
   border-radius: 10px;
+  background: rgba(60, 0, 0, 0.5);
+}
+
+/* ============================================================
+   WALLPAPER GRIDS
+   ============================================================ */
+.wallpapers-grid {
+  display: grid;
+  gap: clamp(0.65rem, 2vw, 1.1rem);
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+/* Mobile wallpapers — portrait */
+.wallpapers-grid--mobile {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 155px), 215px));
+  justify-content: center;
+}
+
+/* Desktop wallpapers — landscape */
+.wallpapers-grid--desktop {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 560px));
+  justify-content: center;
+}
+
+/* ============================================================
+   WALLPAPER CARD
+   ============================================================ */
+.wallpaper-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  background: #1a1a1a;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
-.gallery-img:hover {
-  transform: scale(1.05);
+.wallpapers-grid--mobile .wallpaper-card {
+  aspect-ratio: 9 / 16;
 }
 
-.lightbox {
+.wallpapers-grid--desktop .wallpaper-card {
+  aspect-ratio: 16 / 9;
+}
+
+.wallpaper-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
+}
+
+.wallpaper-card:focus-visible {
+  outline: 2px solid #ff944d;
+  outline-offset: 3px;
+}
+
+.wallpaper-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Name overlay — visible on hover */
+.wallpaper-card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem 0.6rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.72));
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.wallpaper-card:hover .wallpaper-card__overlay {
+  opacity: 1;
+}
+
+.wallpaper-card__name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+.wallpaper-lightbox {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(10, 10, 10, 0.95);
+  inset: 0;
+  background: rgba(5, 5, 5, 0.96);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,42 +197,110 @@
   padding: 1rem;
 }
 
-.lightbox-img {
-  max-width: 90vw;
-  max-height: 80vh;
-  border-radius: 10px;
-}
-
-.close-btn {
+.lightbox-close {
   position: absolute;
   top: 1rem;
-  right: 2rem;
-  font-size: 3rem;
-  color: white;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2.5rem;
+  line-height: 1;
   cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+  z-index: 1001;
+  padding: 0.2rem 0.4rem;
+}
+
+.lightbox-close:hover {
+  opacity: 1;
+}
+
+.lightbox-image {
+  max-width: min(90vw, 460px);
+  max-height: 72vh;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
+}
+
+/* Desktop wallpapers in lightbox are wider */
+.wallpapers-grid--desktop + .wallpaper-lightbox .lightbox-image,
+.wallpaper-lightbox.lightbox--desktop .lightbox-image {
+  max-width: min(90vw, 880px);
 }
 
 .lightbox-controls {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
-  gap: 2rem;
+  gap: 1rem;
+  margin-top: 1.1rem;
 }
 
-.lightbox-controls button,
-.download-btn {
-  background: #222;
-  color: white;
-  padding: 0.5rem 1rem;
+.lightbox-nav {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.45rem 1rem;
   font-size: 1.2rem;
-  border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.2s, border-color 0.2s;
 }
 
-.lightbox-controls button:hover,
-.download-btn:hover {
-  background: #444;
+.lightbox-nav:hover {
+  background: rgba(255, 148, 77, 0.3);
+  border-color: #ff944d;
+}
+
+.lightbox-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  background: #ff944d;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.45rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.lightbox-download:hover {
+  background: #d9712f;
+}
+
+.lightbox-caption {
+  margin-top: 0.65rem;
+  color: #bbb;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ============================================================
+   RESPONSIVE TWEAKS
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Hide lightbox arrow buttons on mobile/tablet in favor of touch swipe */
+  .lightbox-nav {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .wallpapers-grid--mobile {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr));
+  }
+
+  .wallpapers-grid--desktop {
+    grid-template-columns: 1fr;
+  }
+
+  .lightbox-image {
+    max-width: 95vw;
+    max-height: 62vh;
+  }
 }

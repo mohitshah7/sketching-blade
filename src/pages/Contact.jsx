@@ -8,19 +8,21 @@ const Contact = () => {
       {/* Image Section */}
       <div className="contact-image">
         <img
-          src="/assets/contact.jpg" // place your image inside public/contact/profile.jpg
+          src="\assets\comics\door\door-4.jpg" // place your image inside public/contact/profile.jpg
           alt="Sketching Blade"
         />
       </div>
 
       {/* Contact Info */}
       <div className="contact-info">
-         <h2 className="footer-title">Get in Touch</h2>
-      <p className="footer-text">
-        For commissions, queries or feedback — feel free to reach out:
-      </p>
+        <h2 className="contact-title">Get in Touch</h2>
+        <p className="contact-text">
+          For commissions, queries or feedback, feel free to reach out:
+        </p>
         <a
-          href="mailto:sketchingblade@gmail.com"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=sketchingblade@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
           className="contact-button"
         >
           <FaEnvelope className="icon" /> Email Me

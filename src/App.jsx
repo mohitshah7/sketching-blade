@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import ContactFooter from './components/ContactFooter';
+import ScrollToTop from './components/ScrollToTop';
 
 import Home from './pages/Home';
 import Artworks from './pages/Artworks';
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <div>
+      <ScrollToTop />
       <Navbar />
 
       <Routes>

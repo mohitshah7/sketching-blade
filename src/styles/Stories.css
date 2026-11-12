@@ -1,70 +1,75 @@
 /* ==========================================================================
    Sketching Blade — Stories & Poems CSS
-   Design System Matching Artworks, GodArts, Home & Navbar
+   Dark Literary / Atmospheric Theme Matching the Sketching Blade System
    ========================================================================== */
 
 /* 📖 Main Page Container */
 .stories-gallery-page {
-  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2rem);
-  background-color: #ffffff;
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1rem, 3.5vw, 2.5rem);
+  background-color: var(--sb-dark-bg-stories, #111217);
   min-height: 100vh;
-  color: #222222;
-  font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
+  color: var(--sb-dark-text, #f3f4f6);
+  font-family: var(--sb-font-body, 'Comic Neue', cursive, sans-serif);
   box-sizing: border-box;
   overflow-x: hidden;
+  width: 100%;
 }
 
 /* 🎨 Gallery Title */
 .stories-gallery-page .gallery-title {
   text-align: center;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-family: 'Comic Neue', cursive;
-  margin-bottom: 1.5rem;
-  color: #222222;
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  color: #f5f6f8;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* ==========================================================================
-   Stories / Poems Switch Toggle
+   Stories / Poems Switch Toggle (Dark Literary Theme)
    ========================================================================== */
 
 .section-toggle-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 .section-toggle {
-  background: #fff8ef;
-  border: 2px solid #ffeed0;
-  border-radius: 9999px;
+  background: #191a22;
+  border: 1.5px solid rgba(255, 148, 77, 0.3);
+  border-radius: var(--sb-radius-full, 9999px);
   padding: 4px;
   display: inline-flex;
   gap: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .toggle-tab-btn {
-  font-family: 'Comic Neue', cursive;
-  font-size: 1.05rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
   font-weight: bold;
   padding: 8px 28px;
-  border-radius: 9999px;
+  border-radius: var(--sb-radius-full, 9999px);
   border: none;
   cursor: pointer;
   background: transparent;
-  color: #777777;
-  transition: all 0.2s ease;
+  color: #9ba1ad;
+  transition: all 0.22s ease;
   outline: none;
+  letter-spacing: 0.02em;
 }
 
 .toggle-tab-btn:hover:not(.active) {
-  color: #cc5c00;
+  color: #ff944d;
 }
 
 .toggle-tab-btn.active {
   background-color: #ff944d;
   color: #ffffff;
-  box-shadow: 2px 2px 0px #cc5c00;
+  box-shadow: 0 2px 8px rgba(255, 148, 77, 0.4);
 }
 
 .toggle-content-pane {
@@ -84,8 +89,9 @@
 
 /* 📦 Sections Container */
 .stories-sections-container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
+  width: 100%;
 }
 
 /* 📑 Section Styling */
@@ -94,44 +100,52 @@
 }
 
 .empty-section-message {
-  padding: 24px;
+  padding: clamp(2rem, 5vw, 3.5rem) 1.5rem;
   text-align: center;
-  background: #fffdf8;
-  border: 1px dashed #ffd8b3;
-  border-radius: 12px;
-  color: #777777;
-  font-size: 0.95rem;
+  background: #171821;
+  border: 1.5px dashed rgba(255, 148, 77, 0.3);
+  border-radius: var(--sb-radius-lg, 18px);
+  color: #9ba1ad;
+  font-size: 1.05rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  max-width: 600px;
+  margin: 2rem auto;
 }
 
 /* ==========================================================================
-   Story & Poem Cards Grid
+   Story & Poem Cards Grid — Dark Literary Surfaces
    ========================================================================== */
 
 .stories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 340px));
+  justify-content: center;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
   width: 100%;
 }
 
 .story-card {
-  background: #ffffff;
-  border: 2px solid #ffeed0;
-  border-radius: 16px;
+  background: #171821;
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--sb-radius-lg, 18px);
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.28s cubic-bezier(0.2, 0, 0.2, 1),
+              box-shadow 0.28s cubic-bezier(0.2, 0, 0.2, 1),
+              border-color 0.28s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   text-align: left;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .story-card:hover,
 .story-card:focus-visible {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
   border-color: #ff944d;
 }
 
@@ -139,16 +153,18 @@
 .card-image-wrap {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 290px;
   overflow: hidden;
-  background: #fdf6ec;
+  background: #101116;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .story-thumbnail {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 6px;
+  object-position: center;
+  padding: 8px;
   box-sizing: border-box;
   display: block;
   transition: transform 0.35s ease;
@@ -164,10 +180,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #999999;
-  font-size: 0.85rem;
-  font-family: 'Comic Neue', cursive;
-  background: #fef8ee;
+  color: #7a7f8e;
+  font-size: 0.95rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  background: #101116;
 }
 
 /* Card Badges */
@@ -175,41 +191,41 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  padding: 3px 8px;
+  padding: 3px 9px;
   border-radius: 8px;
   font-size: 0.72rem;
-  font-family: 'Comic Neue', cursive;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-weight: 700;
-  letter-spacing: 0.3px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .story-badge {
-  background: rgba(255, 255, 255, 0.95);
-  color: #d96200;
-  border: 1px solid #ffd8b3;
+  background: rgba(255, 148, 77, 0.2);
+  color: #ff944d;
+  border: 1px solid rgba(255, 148, 77, 0.4);
 }
 
 .poem-badge {
-  background: rgba(255, 255, 255, 0.95);
-  color: #16a34a;
-  border: 1px solid #bbf7d0;
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
 }
 
 /* Card Info */
 .story-info {
-  padding: 12px 14px 14px;
+  padding: 14px 16px 16px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .card-title {
-  font-size: 1.2rem;
-  font-family: 'Comic Neue', cursive;
+  font-size: 1.25rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-weight: 700;
-  margin: 0 0 6px;
-  color: #222222;
+  margin: 0 0 8px;
+  color: #f5f6f8;
   line-height: 1.3;
   transition: color 0.2s ease;
 }
@@ -222,27 +238,28 @@
 .genre-pill-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 8px;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
 .genre-pill {
   font-size: 0.72rem;
   font-weight: 600;
-  background: #fff6ee;
-  color: #cc5c00;
-  padding: 2px 7px;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ff944d;
+  padding: 2px 8px;
   border-radius: 6px;
-  border: 1px solid #ffd8b3;
+  border: 1px solid rgba(255, 148, 77, 0.25);
   white-space: nowrap;
 }
 
 /* Card Description */
 .story-desc {
-  font-size: 0.88rem;
-  color: #555555;
-  line-height: 1.5;
-  margin: 0 0 6px;
+  font-size: 0.9rem;
+  color: #b0b4bd;
+  line-height: 1.55;
+  margin: 0 0 8px;
   flex: 1;
 }
 
@@ -257,7 +274,7 @@
   background: none;
   border: none;
   color: #ff944d;
-  font-family: 'Comic Neue', cursive;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-size: 0.85rem;
   font-weight: bold;
   cursor: pointer;
@@ -270,20 +287,19 @@
 }
 
 .read-more-btn:hover {
-  color: #cc5c00;
-  text-decoration: underline;
+  color: #ffa366;
 }
 
 /* Card Footer Action */
 .card-footer-action {
   margin-top: auto;
-  padding-top: 8px;
-  border-top: 1px solid #ffeed0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .read-cta {
-  font-size: 0.88rem;
-  font-family: 'Comic Neue', cursive;
+  font-size: 0.9rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-weight: bold;
   color: #ff944d;
   display: inline-block;
@@ -291,80 +307,80 @@
 }
 
 .story-card:hover .read-cta {
-  transform: translateX(3px);
-  color: #cc5c00;
+  transform: translateX(4px);
+  color: #ffa366;
 }
 
 /* ==========================================================================
-   Story Reader Modal — Optimized 60FPS Scrolling
+   Story Reader Modal — Dark Literary Sanctuary
    ========================================================================== */
 
 .reader-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(10, 10, 10, 0.88);
-  /* No backdrop-filter blur: prevents GPU repainting during content scroll */
+  background-color: rgba(6, 7, 10, 0.95);
   z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.25rem;
+  padding: clamp(0.75rem, 2vw, 1.5rem);
   box-sizing: border-box;
   animation: modalFadeIn 0.2s ease-out;
 }
 
 .reader-container {
-  background-color: #fffdf8;
-  border: 3px solid #ffeed0;
-  border-radius: 20px;
+  background-color: #14151c;
+  border: 2px solid rgba(255, 148, 77, 0.35);
+  border-radius: var(--sb-radius-lg, 20px);
   width: min(1200px, 95vw);
   height: 92vh;
   max-height: 900px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.75);
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  color: #222222;
-  transform: translateZ(0); /* Hardware accelerated composite layer */
+  color: #e6e8ec;
+  touch-action: pan-y;
   animation: modalSlideUp 0.25s ease;
 }
 
 /* Desktop Close Button */
 .reader-close-btn {
   position: absolute;
-  top: 12px;
+  top: 14px;
   right: 14px;
-  background: #ffffff;
-  border: 1px solid #ffeed0;
-  color: #444444;
-  width: 32px;
-  height: 32px;
+  background: #1f202b;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  color: #e6e8ec;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
-  z-index: 10;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  z-index: 20;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .reader-close-btn:hover {
   background: #ff944d;
   color: #ffffff;
   border-color: #ff944d;
+  transform: scale(1.08);
 }
 
 /* Desktop Header: Story Overview */
 .story-overview-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  background: #ffffff;
-  border-bottom: 2px solid #ffeed0;
+  gap: 18px;
+  padding: 16px 22px;
+  background: #181922;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
   flex-shrink: 0;
 }
 
@@ -374,8 +390,9 @@
   flex-shrink: 0;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  border: 1px solid #ffeed0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #101116;
 }
 
 .overview-cover-img {
@@ -388,15 +405,15 @@
 .overview-meta {
   flex: 1;
   min-width: 0;
-  padding-right: 40px;
+  padding-right: 44px;
 }
 
 .overview-title {
-  font-size: clamp(1.25rem, 2vw, 1.55rem);
-  font-family: 'Comic Neue', cursive;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-weight: 700;
-  margin: 0 0 4px;
-  color: #222222;
+  margin: 0 0 6px;
+  color: #f5f6f8;
   line-height: 1.25;
 }
 
@@ -406,21 +423,21 @@
   align-items: center;
   gap: 6px;
   font-size: 0.8rem;
-  color: #cc5c00;
+  color: #ff944d;
   font-weight: 700;
-  font-family: 'Comic Neue', cursive;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   margin-bottom: 6px;
 }
 
 .genre-bullet {
-  color: #ffd8b3;
+  color: rgba(255, 148, 77, 0.4);
   font-size: 0.65rem;
 }
 
 .overview-description {
-  font-size: 0.84rem;
-  color: #555555;
-  line-height: 1.4;
+  font-size: 0.86rem;
+  color: #9ba1ad;
+  line-height: 1.45;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -433,10 +450,10 @@
    ========================================================================== */
 
 .reader-mobile-header {
-  display: none; /* Desktop default */
-  padding: 12px 14px 10px;
-  background: #ffffff;
-  border-bottom: 2px solid #ffeed0;
+  display: none;
+  padding: 12px 14px 12px;
+  background: #181922;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
   flex-shrink: 0;
 }
 
@@ -450,7 +467,7 @@
   background: transparent;
   border: none;
   color: #ff944d;
-  font-family: 'Comic Neue', cursive;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-size: 0.95rem;
   font-weight: bold;
   padding: 4px 6px;
@@ -458,13 +475,18 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  transition: color 0.15s ease;
+}
+
+.mobile-back-btn:hover {
+  color: #ffa366;
 }
 
 .mobile-story-title {
-  font-family: 'Comic Neue', cursive;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-size: 1.25rem;
   font-weight: 700;
-  color: #222222;
+  color: #f5f6f8;
   margin: 0 0 8px;
   text-align: left;
   line-height: 1.2;
@@ -482,11 +504,11 @@
 .chapter-dropdown {
   width: 100%;
   padding: 8px 30px 8px 12px;
-  background: #fffaf4;
-  color: #222222;
-  border: 1.5px solid #ffd8b3;
+  background: #1c1d27;
+  color: #f3f4f6;
+  border: 1.5px solid rgba(255, 148, 77, 0.35);
   border-radius: 8px;
-  font-family: 'Comic Neue', cursive;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-size: 0.92rem;
   font-weight: bold;
   appearance: none;
@@ -503,13 +525,9 @@
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: #cc5c00;
+  color: #ff944d;
   pointer-events: none;
   font-size: 0.75rem;
-}
-
-.mobile-header-divider {
-  display: none;
 }
 
 /* ==========================================================================
@@ -525,38 +543,38 @@
 
 /* Chapter Sidebar (Desktop) */
 .reader-chapter-sidebar {
-  width: 240px;
+  width: 250px;
   flex-shrink: 0;
-  background: #fff8ef;
-  border-right: 1.5px solid #ffeed0;
+  background: #161720;
+  border-right: 1.5px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
 .sidebar-header {
-  padding: 12px 16px;
+  padding: 14px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #ffeed0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .sidebar-header h3 {
-  font-family: 'Comic Neue', cursive;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-size: 0.95rem;
   font-weight: 700;
-  color: #333333;
+  color: #e6e8ec;
   margin: 0;
 }
 
 .sidebar-count {
   font-size: 0.75rem;
-  font-family: 'Comic Neue', cursive;
-  background: #ffffff;
-  color: #cc5c00;
-  border: 1px solid #ffd8b3;
-  padding: 1px 6px;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  background: rgba(255, 148, 77, 0.15);
+  color: #ff944d;
+  border: 1px solid rgba(255, 148, 77, 0.3);
+  padding: 1px 7px;
   border-radius: 6px;
   font-weight: bold;
 }
@@ -582,27 +600,27 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 12px;
+  padding: 9px 12px;
   background: transparent;
   border: none;
   border-radius: 8px;
-  color: #444444;
+  color: #9ba1ad;
   text-align: left;
-  font-family: 'Comic Neue', cursive;
-  font-size: 0.9rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  font-size: 0.92rem;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
 }
 
 .sidebar-chapter-item:hover {
-  background: #fff0db;
-  color: #cc5c00;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ff944d;
 }
 
 .sidebar-chapter-item.active {
-  background: #ffe8cc;
-  color: #cc5c00;
+  background: rgba(255, 148, 77, 0.15);
+  color: #ff944d;
   font-weight: bold;
   border-left: 3px solid #ff944d;
 }
@@ -610,10 +628,10 @@
 .chapter-item-num {
   font-size: 0.72rem;
   font-weight: 700;
-  color: #cc5c00;
-  background: #ffffff;
-  border: 1px solid #ffd8b3;
-  padding: 1px 5px;
+  color: #ff944d;
+  background: #20222d;
+  border: 1px solid rgba(255, 148, 77, 0.25);
+  padding: 1px 6px;
   border-radius: 4px;
   flex-shrink: 0;
 }
@@ -632,71 +650,71 @@
 }
 
 /* ==========================================================================
-   Reading Content Pane — Natural, Responsive Scrolling
+   Reading Content Pane — Dark Literary Immersion
    ========================================================================== */
 
 .reader-content-pane {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch; /* Momentum scrolling on touch */
-  overscroll-behavior-y: contain; /* Prevents background dragging */
-  scroll-behavior: auto; /* Instant natural scroll without laggy smoothing */
-  padding: 24px 32px;
-  background: #fffdf8;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+  touch-action: pan-y;
+  will-change: scroll-position;
+  padding: clamp(24px, 4vw, 40px) clamp(20px, 4vw, 48px);
+  background: #121319;
   box-sizing: border-box;
-  transform: translateZ(0); /* Hardware accelerated composite layer */
 }
 
 .reading-article {
-  max-width: 660px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
 .chapter-header {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   text-align: left;
 }
 
 .chapter-kicker {
-  font-size: 0.8rem;
-  font-family: 'Comic Neue', cursive;
+  font-size: 0.82rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #d96200;
-  margin-bottom: 4px;
+  letter-spacing: 1.2px;
+  color: #ff944d;
+  margin-bottom: 6px;
 }
 
 .chapter-headline {
-  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
-  font-family: 'Comic Neue', cursive;
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-weight: 700;
-  color: #222222;
-  margin: 0 0 10px;
+  color: #f5f6f8;
+  margin: 0 0 12px;
   line-height: 1.25;
 }
 
 .chapter-divider {
-  width: 45px;
+  width: 48px;
   height: 3px;
   background: #ff944d;
   border-radius: 2px;
 }
 
-/* Rich Story Typography */
+/* Rich Story Typography (Dark Theme) */
 .rich-chapter-content {
-  font-size: 1rem;
-  line-height: 1.75;
-  color: #2c3e50;
-  letter-spacing: 0.01em;
+  font-size: clamp(1rem, 1.2vw, 1.08rem);
+  line-height: 1.85;
+  color: #e2e4ea;
+  letter-spacing: 0.012em;
   text-align: left;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 .rich-chapter-content p {
   margin-top: 0;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.4rem;
 }
 
 .rich-chapter-content p:last-child {
@@ -705,13 +723,13 @@
 
 .rich-chapter-content strong,
 .rich-chapter-content b {
-  color: #111111;
+  color: #ffffff;
   font-weight: 700;
 }
 
 .rich-chapter-content em,
 .rich-chapter-content i {
-  color: #333333;
+  color: #c8ccd6;
   font-style: italic;
 }
 
@@ -719,28 +737,28 @@
 .rich-chapter-content h2,
 .rich-chapter-content h3,
 .rich-chapter-content h4 {
-  font-family: 'Comic Neue', cursive;
-  color: #222222;
-  margin-top: 1.6rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  color: #f5f6f8;
+  margin-top: 1.8rem;
   margin-bottom: 0.8rem;
   font-weight: 700;
 }
 
 .rich-chapter-content blockquote {
   border-left: 3px solid #ff944d;
-  margin: 1.2rem 0;
-  padding: 6px 16px;
-  background: #fff8ef;
+  margin: 1.4rem 0;
+  padding: 8px 18px;
+  background: #191a24;
   font-style: italic;
-  color: #444444;
+  color: #c5c9d4;
   border-radius: 0 8px 8px 0;
 }
 
 .reader-empty-chapter {
   text-align: center;
   padding: 40px 20px;
-  color: #777777;
-  font-family: 'Comic Neue', cursive;
+  color: #9ba1ad;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
 }
 
 /* Footer Navigation Bar */
@@ -748,24 +766,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
-  background: #ffffff;
-  border-top: 1.5px solid #ffeed0;
+  padding: 12px 24px;
+  background: #181922;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.08);
   flex-shrink: 0;
 }
 
 .reader-nav-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 7px 18px;
+  gap: 6px;
+  padding: 8px 20px;
   background-color: #ff944d;
   color: #ffffff;
   border: none;
   border-radius: 10px;
   box-shadow: 2px 2px 0px #cc5c00;
-  font-family: 'Comic Neue', cursive;
-  font-size: 0.9rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  font-size: 0.92rem;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.15s ease;
@@ -777,34 +795,36 @@
 }
 
 .reader-nav-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
+  background-color: #262733;
+  color: #777777;
   cursor: not-allowed;
   box-shadow: none;
   transform: none;
 }
 
 .chapter-progress-indicator {
-  font-size: 0.85rem;
-  font-family: 'Comic Neue', cursive;
-  color: #666666;
+  font-size: 0.88rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  color: #9ba1ad;
   font-weight: bold;
 }
 
 /* ==========================================================================
-   Poem Reader Modal
+   Poem Reader Modal (Dark Atmospheric Theme)
    ========================================================================== */
 
 .poem-reader-container {
-  max-width: 840px;
+  max-width: 860px;
 }
 
 .poem-reader-header {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 16px 20px;
-  background: #ffffff;
-  border-bottom: 2px solid #ffeed0;
+  padding: 16px 22px;
+  background: #181922;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
   flex-shrink: 0;
 }
 
@@ -814,8 +834,9 @@
   flex-shrink: 0;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #ffeed0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #101116;
 }
 
 .poem-cover-img {
@@ -828,41 +849,35 @@
 .poem-meta {
   flex: 1;
   min-width: 0;
-  padding-right: 35px;
+  padding-right: 40px;
 }
 
 .poem-kicker {
   display: inline-block;
-  font-size: 0.72rem;
-  font-family: 'Comic Neue', cursive;
+  font-size: 0.75rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #16a34a;
+  letter-spacing: 1.2px;
+  color: #4ade80;
   margin-bottom: 2px;
 }
 
 .poem-title {
-  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
-  font-family: 'Comic Neue', cursive;
+  font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   font-weight: 700;
   margin: 0 0 4px;
-  color: #222222;
+  color: #f5f6f8;
   line-height: 1.25;
 }
 
 .poem-description {
-  font-size: 0.82rem;
-  color: #666666;
-  line-height: 1.4;
+  font-size: 0.85rem;
+  color: #9ba1ad;
+  line-height: 1.45;
   margin: 4px 0 0;
   font-style: italic;
-}
-
-.poem-divider {
-  height: 1px;
-  background: #ffeed0;
-  width: 100%;
 }
 
 .poem-content-pane {
@@ -870,18 +885,20 @@
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: contain;
   scroll-behavior: auto;
-  padding: 24px 28px 36px;
-  transform: translateZ(0);
+  touch-action: pan-y;
+  will-change: scroll-position;
+  padding: clamp(24px, 4vw, 36px) clamp(20px, 4vw, 36px);
+  background: #121319;
+  box-sizing: border-box;
 }
 
 .rich-poem-content {
-  max-width: 540px;
+  max-width: 580px;
   margin: 0 auto;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #2c3e50;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #e2e4ea;
   text-align: left;
   letter-spacing: 0.015em;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -889,9 +906,9 @@
 
 .rich-poem-content p {
   margin-top: 0;
-  margin-bottom: 1.4rem;
-  padding-left: 10px;
-  border-left: 2px solid #ffd8b3;
+  margin-bottom: 1.5rem;
+  padding-left: 12px;
+  border-left: 2px solid rgba(74, 222, 128, 0.4);
 }
 
 .rich-poem-content p:last-child {
@@ -907,47 +924,47 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
-  background: #fffdf8;
-  border: 2px dashed #ffeed0;
-  border-radius: 16px;
+  padding: 44px 20px;
+  background: #171821;
+  border: 1.5px dashed rgba(255, 148, 77, 0.35);
+  border-radius: var(--sb-radius-lg, 18px);
   max-width: 500px;
   margin: 30px auto;
   text-align: center;
 }
 
 .loading-spinner {
-  width: 38px;
-  height: 38px;
-  border: 3px solid #ffeed0;
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
   border-top-color: #ff944d;
   border-radius: 50%;
   animation: spinnerRotate 0.8s linear infinite;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .status-title {
-  font-family: 'Comic Neue', cursive;
-  font-size: 1.3rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  font-size: 1.35rem;
   margin: 0 0 6px;
-  color: #222222;
+  color: #f5f6f8;
 }
 
 .status-text {
   font-size: 0.95rem;
-  color: #666666;
-  margin: 0 0 14px;
+  color: #9ba1ad;
+  margin: 0 0 16px;
 }
 
 .retry-btn {
   background-color: #ff944d;
   color: #ffffff;
   border: none;
-  padding: 8px 20px;
+  padding: 8px 22px;
   border-radius: 10px;
   box-shadow: 2px 2px 0px #cc5c00;
-  font-family: 'Comic Neue', cursive;
-  font-size: 0.9rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  font-size: 0.92rem;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.15s ease;
@@ -960,23 +977,29 @@
 
 /* Animations */
 @keyframes modalFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes modalSlideUp {
   from {
     opacity: 0;
-    transform: translateY(16px) scale(0.99);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: none;
   }
 }
 
 @keyframes spinnerRotate {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 body.no-scroll {
@@ -998,7 +1021,7 @@ body.no-scroll {
 
 @media (max-width: 768px) {
   .stories-gallery-page {
-    padding: 1.25rem 0.85rem 3rem;
+    padding: 1.5rem 1rem 3rem;
   }
 
   .section-toggle-container {
@@ -1012,13 +1035,13 @@ body.no-scroll {
 
   .stories-grid {
     grid-template-columns: 1fr;
-    max-width: 400px;
+    max-width: 420px;
     margin: 0 auto;
     gap: 1.25rem;
   }
 
   .card-image-wrap {
-    height: 280px;
+    height: 270px;
   }
 
   /* Reader Modal on Mobile */
@@ -1032,9 +1055,9 @@ body.no-scroll {
     max-height: 100dvh;
     border-radius: 0;
     border: none;
+    box-shadow: none;
   }
 
-  /* Show mobile-only header, hide desktop-only header */
   .mobile-only {
     display: block !important;
   }
@@ -1043,11 +1066,10 @@ body.no-scroll {
     display: none !important;
   }
 
-  /* Mobile Content Pane — Lightweight 60fps Native Scrolling */
   .reader-content-pane {
-    padding: 14px 16px 20px;
+    padding: 16px 18px 24px;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
+    touch-action: pan-y;
   }
 
   .reading-article {
@@ -1055,7 +1077,7 @@ body.no-scroll {
   }
 
   .chapter-header {
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
 
   .chapter-kicker {
@@ -1064,7 +1086,7 @@ body.no-scroll {
   }
 
   .chapter-headline {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     margin-bottom: 8px;
   }
 
@@ -1074,16 +1096,15 @@ body.no-scroll {
     margin-bottom: 14px;
   }
 
-  /* Book-like mobile typography */
   .rich-chapter-content,
   .rich-poem-content {
-    font-size: 0.95rem;
-    line-height: 1.68;
-    color: #2c3e50;
+    font-size: 0.98rem;
+    line-height: 1.72;
+    color: #e2e4ea;
   }
 
   .rich-chapter-content p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
   }
 
   .reader-footer-nav {
@@ -1091,17 +1112,17 @@ body.no-scroll {
   }
 
   .reader-nav-btn {
-    padding: 7px 14px;
-    font-size: 0.85rem;
+    padding: 7px 16px;
+    font-size: 0.88rem;
   }
 
   .chapter-progress-indicator {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
   }
 
   .poem-content-pane {
-    padding: 14px 16px 24px;
+    padding: 16px 18px 28px;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
+    touch-action: pan-y;
   }
 }

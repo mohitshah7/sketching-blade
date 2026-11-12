@@ -1,10 +1,10 @@
-/* ComicReader.css */
+/* ComicReader.css — Dedicated Dark Cinematic Reading Environment */
 
 .comic-reader {
-  background-color: #0c0a18;
+  background-color: #08090d;
   min-height: 100vh;
-  color: #f1f1f1;
-  padding-block: clamp(2rem, 4vw, 3.5rem);
+  color: #f1f2f5;
+  padding-block: clamp(2rem, 4.5vw, 3.5rem);
   padding-inline: clamp(1rem, 3.5vw, 2.5rem);
   position: relative;
   text-align: center;
@@ -13,37 +13,68 @@
   width: 100%;
 }
 
-/* Fixed Exit Button with frosted glass effect */
-.comic-reader-exit-btn {
-  position: fixed;
-  top: clamp(0.75rem, 2vw, 1.5rem);
-  right: clamp(0.75rem, 2vw, 1.5rem);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(15, 12, 41, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  font-size: 1.25rem;
+/* Reader Top Bar (contained within reader, never overlapping navbar) */
+.comic-reader-topbar {
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto clamp(0.75rem, 2vw, 1.5rem);
+  padding-inline: 0.5rem;
+  box-sizing: border-box;
+}
+
+/* Reader Exit Button with sleek dark styling */
+.comic-reader-exit-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: var(--sb-radius-full, 9999px);
+  background: rgba(20, 22, 32, 0.92);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  color: #f1f2f5;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
-  z-index: 1200;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   line-height: 1;
-  padding: 0;
+}
+
+.exit-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.exit-label {
+  font-size: 0.92rem;
+  line-height: 1;
 }
 
 @media (hover: hover) {
   .comic-reader-exit-btn:hover {
-    transform: scale(1.08);
-    background: rgba(255, 148, 77, 0.9);
+    transform: translateY(-2px);
+    background: #ff944d;
     border-color: #ff944d;
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(255, 148, 77, 0.35);
   }
+}
+
+.comic-reader-exit-btn:active {
+  transform: translateY(0);
+}
+
+/* Bottom Return Bar at end of comic pages */
+.comic-reader-bottom-bar {
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 /* Reader Main Content Container */
@@ -58,23 +89,25 @@
 }
 
 .comic-title {
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
   margin-bottom: clamp(0.75rem, 1.5vw, 1.25rem);
   color: #ffffff;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
+  font-weight: bold;
   word-break: break-word;
   line-height: 1.25;
+  letter-spacing: 0.02em;
 }
 
 /* Compact Soundtrack Audio Player */
 .comic-audio-container {
   width: min(100%, 340px);
-  margin: clamp(0.5rem, 1.5vw, 1rem) auto clamp(1.5rem, 3vw, 2.5rem);
-  padding: 8px 14px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 9999px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  margin: clamp(0.5rem, 1.5vw, 1rem) auto clamp(1.75rem, 3.5vw, 2.75rem);
+  padding: 8px 16px;
+  background: #14151f;
+  border: 1.5px solid rgba(255, 148, 77, 0.35);
+  border-radius: var(--sb-radius-full, 9999px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,8 +118,9 @@
 .comic-audio-label {
   font-size: 0.72rem;
   font-weight: 700;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: #ff944d;
 }
 
@@ -102,16 +136,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  gap: clamp(1rem, 2.5vw, 2rem);
   width: 100%;
 }
 
 .comic-page {
   width: 100%;
-  max-width: 760px;
+  max-width: 780px;
   height: auto;
-  border-radius: clamp(6px, 1.5vw, 12px);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+  border-radius: clamp(6px, 1.2vw, 12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
   display: block;
   object-fit: contain;
 }
@@ -119,11 +153,12 @@
 /* Loading & Error States */
 .comic-reader-state {
   text-align: center;
-  padding: 4rem 1rem;
-  color: #cccccc;
+  padding: 5rem 1rem;
+  color: #9ba1ad;
   font-size: 1.15rem;
+  font-family: var(--sb-font-heading, 'Comic Neue', cursive, sans-serif);
 }
 
 .comic-reader-state.error {
-  color: #ff9999;
+  color: #ff8888;
 }

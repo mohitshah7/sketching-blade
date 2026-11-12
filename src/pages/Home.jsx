@@ -1,15 +1,67 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getStrapiBaseUrl, getStrapiMediaUrl } from '../utils/strapi';
 import '../styles/Home.css';
 
 function Home() {
+  const [bannerUrl, setBannerUrl] = useState('');
+  const [backgroundUrl, setBackgroundUrl] = useState('');
+  const [bannerAlt, setBannerAlt] = useState('Sketching Blade Banner');
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchHomePage = async () => {
+      try {
+        const baseUrl = getStrapiBaseUrl();
+        const res = await fetch(`${baseUrl}/api/home-page?populate=*`);
+
+        if (!res.ok) {
+          throw new Error(`Failed to fetch home page data (${res.status} ${res.statusText})`);
+        }
+
+        const json = await res.json();
+        const data = Array.isArray(json?.data) ? json.data[0] : (json?.data || null);
+
+        if (data && isMounted) {
+          const banner = getStrapiMediaUrl(data.BannerImage || data.bannerImage);
+          const bg = getStrapiMediaUrl(data.BackgroundImage || data.backgroundImage);
+
+          if (banner) {
+            setBannerUrl(banner);
+          }
+          if (bg) {
+            setBackgroundUrl(bg);
+          }
+          if (data.BannerImage?.alternativeText) {
+            setBannerAlt(data.BannerImage.alternativeText);
+          }
+        }
+      } catch (err) {
+        console.error('[Home] Error fetching home page from Strapi:', err);
+      }
+    };
+
+    fetchHomePage();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const bannerSrc = bannerUrl || '/assets/herobanner.jpg';
+  const homeStyle = backgroundUrl
+    ? { backgroundImage: `url("${backgroundUrl}")` }
+    : undefined;
+
   return (
-    <div className="home-sections">
+    <div className="home-sections" style={homeStyle}>
 
       {/* 🔶 Hero Section */}
       <div className="hero-banner">
         <img
-          src="/assets/herobanner.jpg"
-          alt="Sketching Blade Banner"
+          src={bannerSrc}
+          alt={bannerAlt}
           className="hero-image"
         />
       </div>
@@ -33,8 +85,6 @@ function Home() {
           <Link to="/comics" className="section-button">Read</Link>
         </div>
       </div>
-
-     
 
       {/* 🔹 Section: God Arts */}
       <div className="section-wrapper">

@@ -1,98 +1,124 @@
+/* src/styles/ContactFooter.css */
+
 .contact-footer {
-  background-color: #ffefd6;
+  background-color: #fff8ef;
   text-align: center;
-  padding: 3rem 1.5rem;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem);
+  border-top: 2px solid #ffeed0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.footer-content {
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 .footer-title {
   font-family: 'Comic Neue', cursive;
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 0.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.3rem);
+  font-weight: bold;
+  color: #222222;
+  margin-top: 0;
+  margin-bottom: 0.6rem;
 }
 
 .footer-text {
-  font-size: 1rem;
-  color: #444;
-  margin-bottom: 1.5rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  font-family: 'Comic Neue', cursive, sans-serif;
+  font-size: 1.05rem;
+  color: #555555;
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
 }
 
 .footer-button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   background-color: #ff944d;
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
-  padding: 0.7rem 1.6rem;
+  padding: 0.75rem 1.8rem;
+  font-family: 'Comic Neue', cursive;
   font-weight: bold;
+  font-size: 1.05rem;
   border-radius: 12px;
   box-shadow: 3px 3px 0px #cc5c00;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .footer-button:hover {
   background-color: #ffa366;
   transform: translateY(-2px);
+  box-shadow: 3px 5px 0px #cc5c00;
 }
 
-.social-links {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap; /* allows wrapping on smaller screens */
-  gap: 1.5rem;
-}
-
-.social-links a {
-  text-decoration: none;
-  color: #444;
-  font-weight: bold;
-  transition: color 0.3s ease;
+.button-icon {
   font-size: 1.1rem;
 }
 
-.social-links a:hover {
-  color: #ff944d;
+.social-links {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.social-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #444444;
+  border: 2px solid #ff944d;
+  font-size: 1.3rem;
+  text-decoration: none;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.social-icon-btn:hover {
+  background-color: #ff944d;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(255, 148, 77, 0.4);
+}
+
+.footer-copyright {
+  margin-top: 2.25rem;
+  font-size: 0.9rem;
+  color: #888888;
+  font-family: 'Comic Neue', cursive;
+  margin-bottom: 0;
 }
 
 /* 📱 Mobile Devices */
 @media (max-width: 600px) {
   .footer-title {
-    font-size: 1.5rem;
-  }
-
-  .footer-text {
-    font-size: 0.9rem;
-    padding: 0 1rem;
-  }
-
-  .footer-button {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-  }
-
-  .social-links {
-    gap: 1rem;
-  }
-
-  .social-links a {
-    font-size: 1rem;
-  }
-}
-
-/* 📱 Tablets */
-@media (max-width: 900px) {
-  .footer-title {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
 
   .footer-text {
     font-size: 0.95rem;
   }
 
+  .footer-button {
+    padding: 0.65rem 1.4rem;
+    font-size: 0.95rem;
+  }
+
   .social-links {
-    gap: 1.2rem;
+    gap: 1rem;
+  }
+
+  .social-icon-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 1.15rem;
   }
 }

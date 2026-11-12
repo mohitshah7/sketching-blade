@@ -1,57 +1,62 @@
+/* src/styles/Navbar.css */
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 1rem 2rem;
+  padding: 1rem clamp(1rem, 3vw, 2rem);
   font-family: 'Comic Neue', cursive;
   position: sticky;
   top: 0;
   z-index: 1000;
-  /*box-shadow: 0 2px 8px rgba(0,0,0,0.08);*/
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .logo-img {
   height: 50px;
   width: auto;
+  max-width: 220px;
   object-fit: contain;
   display: block;
+  transition: height 0.25s ease, max-width 0.25s ease;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: clamp(1rem, 2vw, 1.75rem);
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
+/* Navbar links — clean text hover without underline */
 .nav-links li a {
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.2rem;
-  color: #000;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.nav-links li a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background-color: #ff944d;
-  transition: width 0.3s ease;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  color: #222222;
+  transition: color 0.2s ease;
+  padding: 0.25rem 0.15rem;
+  display: inline-block;
 }
 
 .nav-links li a:hover {
   color: #ff944d;
-}
-
-.nav-links li a:hover::after {
-  width: 100%;
 }
 
 /* 🌌 Animated Hamburger Menu */
@@ -62,26 +67,28 @@
   align-items: center;
   cursor: pointer;
   gap: 6px;
-  height: 30px;
-  width: 35px;
-  border-radius: 10px;
+  height: 32px;
+  width: 36px;
+  border-radius: 8px;
   transition: all 0.3s ease;
   position: relative;
   z-index: 1100;
+  background: transparent;
+  padding: 2px;
 }
 
 .menu-toggle span {
-  width: 28px;
+  width: 26px;
   height: 3px;
   background: linear-gradient(90deg, #ff944d, #ff5e62);
   border-radius: 5px;
-  transition: all 0.4s ease;
-  box-shadow: 0 0 8px rgba(255, 94, 98, 0.5);
+  transition: all 0.35s ease;
+  box-shadow: 0 0 6px rgba(255, 94, 98, 0.4);
 }
 
 /* Hover Glow */
 .menu-toggle:hover span {
-  box-shadow: 0 0 12px rgba(255, 148, 77, 0.7);
+  box-shadow: 0 0 10px rgba(255, 148, 77, 0.7);
 }
 
 /* 🍔→✖️ Transform */
@@ -90,14 +97,23 @@
 }
 .menu-toggle.open span:nth-child(2) {
   opacity: 0;
-  transform: translateX(15px);
+  transform: translateX(12px);
 }
 .menu-toggle.open span:nth-child(3) {
   transform: rotate(-45deg) translateY(-9px);
 }
 
-/* 📱 Mobile Layout */
+/* 📱 Tablet Layout (≤ 768px) */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1.25rem;
+  }
+
+  .logo-img {
+    height: 38px;
+    max-width: 170px;
+  }
+
   .menu-toggle {
     display: flex;
   }
@@ -107,17 +123,18 @@
     top: 0;
     right: 0;
     height: 100vh;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
     flex-direction: column;
-    width: 70%;
-    max-width: 280px;
+    width: 72%;
+    max-width: 290px;
     padding: 5rem 2rem;
     gap: 1.5rem;
     transform: translateX(100%);
-    transition: transform 0.4s ease;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: transform 0.35s cubic-bezier(0.2, 0, 0.2, 1);
+    box-shadow: -6px 0 20px rgba(0, 0, 0, 0.12);
     z-index: 1050;
+    align-items: flex-start;
   }
 
   .nav-links.active {
@@ -125,17 +142,41 @@
   }
 
   .nav-links li a {
-    font-size: 1.1rem;
-    color: #000;
+    font-size: 1.2rem;
+    color: #222222;
   }
 
   /* 🌫️ Dimmed background when menu is open */
   .menu-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(4px);
     z-index: 1000;
     transition: opacity 0.3s ease;
+  }
+}
+
+/* 📱 Mobile Layout (≤ 480px) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.6rem 1rem;
+  }
+
+  .logo-img {
+    height: 32px;
+    max-width: 140px;
+  }
+}
+
+/* 📱 Very Narrow Screens (≤ 360px) */
+@media (max-width: 360px) {
+  .navbar {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .logo-img {
+    height: 28px;
+    max-width: 120px;
   }
 }

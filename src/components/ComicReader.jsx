@@ -102,14 +102,17 @@ const ComicReader = () => {
   if (error || !comic) {
     return (
       <div className="comic-reader">
-        <button
-          type="button"
-          className="comic-reader-exit-btn"
-          onClick={() => navigate(-1)}
-          aria-label="Close comic reader"
-        >
-          ✕
-        </button>
+        <div className="comic-reader-topbar">
+          <button
+            type="button"
+            className="comic-reader-exit-btn"
+            onClick={() => navigate(-1)}
+            aria-label="Close comic reader"
+          >
+            <span className="exit-icon">✕</span>
+            <span className="exit-label">Close</span>
+          </button>
+        </div>
         <div className="comic-reader-state error">
           {error ? `Error: ${error}` : 'Comic not found.'}
         </div>
@@ -119,14 +122,17 @@ const ComicReader = () => {
 
   return (
     <div className="comic-reader">
-      <button
-        type="button"
-        className="comic-reader-exit-btn"
-        onClick={() => navigate(-1)}
-        aria-label="Close comic reader"
-      >
-        ✕
-      </button>
+      <div className="comic-reader-topbar">
+        <button
+          type="button"
+          className="comic-reader-exit-btn"
+          onClick={() => navigate(-1)}
+          aria-label="Close comic reader"
+        >
+          <span className="exit-icon">✕</span>
+          <span className="exit-label">Close</span>
+        </button>
+      </div>
 
       <div className="comic-reader-content">
         <h2 className="comic-title">{comic.title}</h2>
@@ -151,6 +157,18 @@ const ComicReader = () => {
               loading="lazy"
             />
           ))}
+        </div>
+
+        <div className="comic-reader-bottom-bar">
+          <button
+            type="button"
+            className="comic-reader-exit-btn"
+            onClick={() => navigate(-1)}
+            aria-label="Back to comics"
+          >
+            <span className="exit-icon">←</span>
+            <span className="exit-label">Back to Comics</span>
+          </button>
         </div>
       </div>
     </div>
